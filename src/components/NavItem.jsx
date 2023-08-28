@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { FiChevronRight } from 'react-icons/fi';
 
 const NavItem = ({ link, items, title }) => {
   const [show, setShow] = useState(false)
@@ -16,7 +17,12 @@ const NavItem = ({ link, items, title }) => {
             <div className={show ? 'bg-darkGray rounded-lg flex flex-col mt-2' : "hidden"}>
               {
                 items?.map((item) => {
-                  return <Link to={item?.url} className='select-none text-sm py-2 px-3 rounded-lg'>{item?.title}</Link>
+                  return <Link to={item?.url} className='flex gap-2 items-center select-none text-sm py-2 px-3 rounded-lg'>
+                    <FiChevronRight className='text-green' />
+                    <div>
+                      {item?.title}
+                    </div>
+                  </Link>
                 })
               }
             </div>
