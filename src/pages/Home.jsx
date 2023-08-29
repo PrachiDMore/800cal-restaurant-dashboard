@@ -69,7 +69,7 @@ const Home = () => {
 						{/* 3rd section */}
 						<div className='w-full'>
 							<p className='font-semibold text-xl '>Orders</p>
-							<div className="w-full text-white pt-3 overflow-hidden border-mediumGray rounded-lg">
+							<div className="w-full text-white mt-3 overflow-hidden rounded-lg">
 								<table className="w-full text-left bg-darkGray ">
 									<thead className='overflow-hidden '>
 										<tr className='bg-mediumGray rounded-t-lg'>
@@ -97,7 +97,33 @@ const Home = () => {
 									<tbody className='text-sm'>
 										<tr className="border-b border-mediumGray">
 											<th className="px-6 py-4 ">
-												1
+												#123
+											</th>
+											<td className="px-6 py-4">
+												<div className='flex gap-1 items-center'>
+													<img className='h-8 w-8' src="/assets/profile.png" alt="" />
+													<div>
+														<p>John Doe</p>
+														<p className='text-xs text-mediumGray'>Garden view park, Kuwait</p>
+													</div>
+												</div>
+											</td>
+											<td className="px-6 py-4">
+											12th July, 2023 23:00
+											</td>
+											<td className="px-6 py-4">
+											Home delivery
+											</td>
+											<td className="px-6 py-4">
+											1
+											</td>
+											<td className="px-6 py-4">
+											Being delivered
+											</td>
+										</tr>
+										<tr className="">
+											<th className="px-6 py-4 ">
+												#123
 											</th>
 											<td className="px-6 py-4">
 												<div className='flex gap-1 items-center'>

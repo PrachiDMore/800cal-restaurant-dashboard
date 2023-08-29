@@ -11,7 +11,7 @@ const Navbar = () => {
       </div>
       <div className='text-white grid grid-cols-1 gap-2'>
         <NavItem link={{
-          url: "/",
+          url: "/home",
           title: "Home"
         }}/>
         <NavItem link={{
