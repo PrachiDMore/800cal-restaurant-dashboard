@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import RestoProfile from '../components/RestoProfile'
-import { useNavigate } from 'react-router-dom'
-import Button from '../components/Button'
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button';
 
-const Orders = () => {
+const NewOrders = () => {
   const [showResto, setShowResto] = useState(false)
 
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Orders = () => {
         <div className='w-4/5  Lexend'>
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
-            All Orders
+            New Orders
             <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" />
           </div>
 
@@ -84,7 +84,7 @@ const Orders = () => {
                       Being delivered
                     </td>
                   </tr>
-                  <tr className="">
+                  <tr onClick={handleClick} className="cursor-pointer">
                     <th className="px-6 py-4 ">
                       #123
                     </th>
@@ -122,4 +122,4 @@ const Orders = () => {
   )
 }
 
-export default Orders
+export default NewOrders

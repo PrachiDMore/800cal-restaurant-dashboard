@@ -20,13 +20,18 @@ const ListFood = () => {
             <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" />
           </div>
 
-          <div className='w-full p-5'>
+          <div className='w-full p-5 grid gap-4'>
             <div className='w-full flex gap-4 '>
               <input className='w-5/6 outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
               <Button text={"Add Food"} onClick={() => { setShowModal(true) }} className={"w-1/6"} />
             </div>
 
-            <div className="w-full text-white mt-4 overflow-hidden rounded-lg">
+            <div className='flex gap-4 '>
+              <Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"} />
+              <Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
+            </div>
+
+            <div className="w-full text-white  overflow-hidden rounded-lg">
               <table className="w-full text-left bg-darkGray ">
                 <thead className='overflow-hidden '>
                   <tr className='bg-mediumGray rounded-t-lg'>

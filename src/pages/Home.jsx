@@ -4,6 +4,7 @@ import { PiNotepad, PiWallet } from "react-icons/pi"
 import { AiOutlineTags } from "react-icons/ai"
 import { BsCart } from "react-icons/bs"
 import RestoProfile from '../components/RestoProfile';
+import Button from '../components/Button';
 
 const Home = () => {
 	const [showResto, setShowResto] = useState(false)
@@ -24,7 +25,7 @@ const Home = () => {
 							<div className='bg-darkGray rounded-xl p-3 py-5'>
 								<div className='w-full flex items-center justify-between text-lg'>
 									<p className='font-light'>Current Orders</p>
-									<PiNotepad className='text-green text-xl' />
+									<PiNotepad className='text-green text-3xl' />
 								</div>
 								<p className='text-2xl font-bold'>23</p>
 							</div>
@@ -32,7 +33,7 @@ const Home = () => {
 							<div className='bg-darkGray rounded-xl p-3 py-5'>
 								<div className='w-full flex items-center justify-between text-lg'>
 									<p className='font-light'>Total Orders</p>
-									<BsCart className='text-green' />
+									<BsCart className='text-green text-2xl font-bold' />
 								</div>
 								<p className='text-2xl font-bold'>150</p>
 							</div>
@@ -40,7 +41,7 @@ const Home = () => {
 							<div className='bg-darkGray rounded-xl p-3 py-5'>
 								<div className='w-full flex items-center justify-between text-lg'>
 									<p className='font-light'>Today's Sale</p>
-									<AiOutlineTags className='text-green text-xl' />
+									<AiOutlineTags className='text-green text-3xl' />
 								</div>
 								<p className='text-2xl font-bold'>1400KD</p>
 							</div>
@@ -48,7 +49,7 @@ const Home = () => {
 							<div className='bg-darkGray rounded-xl p-3 py-5'>
 								<div className='w-full flex items-center justify-between text-lg'>
 									<p className='font-light'>Wallet</p>
-									<PiWallet className='text-green text-xl' />
+									<PiWallet className='text-green text-3xl' />
 								</div>
 								<p className='text-2xl font-bold'>5000KD</p>
 							</div>
@@ -67,9 +68,15 @@ const Home = () => {
 						</div>
 
 						{/* 3rd section */}
-						<div className='w-full'>
+						<div className='w-full grid gap-4'>
 							<p className='font-semibold text-xl '>Orders</p>
-							<div className="w-full text-white mt-3 overflow-hidden rounded-lg">
+
+							<div className='flex gap-4'>
+								<Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"}/>
+								<Button buttonClassName={"w-auto px-3 py-1"} text={"Print"}/>
+							</div>
+
+							<div className="w-full text-white  overflow-hidden rounded-lg">
 								<table className="w-full text-left bg-darkGray ">
 									<thead className='overflow-hidden '>
 										<tr className='bg-mediumGray rounded-t-lg'>

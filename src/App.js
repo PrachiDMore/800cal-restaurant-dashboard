@@ -5,6 +5,9 @@ import Orders from './pages/Orders';
 import ListFood from './pages/ListFood';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/Signup';
+import NewOrders from './pages/NewOrders';
+import OrderDetails from './pages/OrderDetails';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -16,7 +19,10 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/all-orders" element={<Orders />} />
+          <Route path="/order-details" element={<OrderDetails />} />
+          <Route path="/new-orders" element={<NewOrders />} />
           <Route path="/list-foods" element={<ListFood />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Router>
     </>
