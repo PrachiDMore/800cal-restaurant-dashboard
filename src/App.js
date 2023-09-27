@@ -8,6 +8,7 @@ import SignUp from './pages/Signup';
 import NewOrders from './pages/NewOrders';
 import OrderDetails from './pages/OrderDetails';
 import Settings from './pages/Settings';
+import Rider from './pages/Rider';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/new-orders" element={<NewOrders />} />
           <Route path="/list-foods" element={<ListFood />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/rider" element={<Rider />} />
         </Routes>
       </Router>
     </>

@@ -44,6 +44,10 @@ const Navbar = () => {
           <p className='bg-darkGray py-2 px-3 rounded-lg'>Reviews</p>
           <p className='bg-darkGray py-2 px-3 rounded-lg'>Programs</p>
           <NavItem link={{
+            url: "/rider",
+            title: "Rider"
+          }} />
+          <NavItem link={{
             url: "/settings",
             title: "Settings"
           }} />
