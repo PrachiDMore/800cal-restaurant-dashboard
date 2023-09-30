@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiChevronRight } from 'react-icons/fi';
 
-const NavItem = ({ link, items, title }) => {
+const NavItem = ({ link, items, title, icon }) => {
   const [show, setShow] = useState(false)
   return (
     <>
       {
         link ?
-          <Link to={link?.url} className='select-none bg-darkGray py-2 px-3 rounded-lg'>{link?.title}</Link>
+          <Link to={link?.url} className='flex items-center gap-2 select-none bg-darkGray py-2 px-3 rounded-lg'>{link.icon} {link?.title}</Link>
           :
           <div>
-            <div onClick={() => { setShow(!show) }} className='select-none cursor-pointer bg-darkGray py-2 px-3 rounded-lg'>
-              {title}
+            <div onClick={() => { setShow(!show) }} className='flex items-center gap-2 select-none cursor-pointer bg-darkGray py-2 px-3 rounded-lg'>
+              <div className=''>{icon}</div> {title}
             </div>
             <div className={show ? 'bg-darkGray rounded-lg flex flex-col mt-2' : "hidden"}>
               {

@@ -1,6 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import NavItem from './NavItem'
+import { AiFillHome } from 'react-icons/ai';
+import { MdOutlineAddToPhotos, MdManageAccounts } from 'react-icons/md';
+import {IoMdSettings} from 'react-icons/io'
+import {TbTruckDelivery} from 'react-icons/tb'
+import {BsBox} from 'react-icons/bs'
+import {BiWallet} from 'react-icons/bi'
 
 const Navbar = () => {
   return (
@@ -12,13 +17,15 @@ const Navbar = () => {
         <div className='text-white grid grid-cols-1 gap-2'>
           <NavItem link={{
             url: "/home",
-            title: "Home"
+            title: "Home",
+            icon: <AiFillHome />
           }} />
           <NavItem link={{
             url: "/list-foods",
-            title: "Add Food"
+            title: "Add Food",
+            icon: <MdOutlineAddToPhotos />
           }} />
-          <NavItem title={"Orders"} items={[
+          <NavItem title={"Orders"} icon={<BsBox/>} items={[
             {
               url: "/all-orders",
               title: "All Orders"
@@ -40,16 +47,35 @@ const Navbar = () => {
               title: "Cancelled Orders"
             }
           ]} />
-          <p className='bg-darkGray py-2 px-3 rounded-lg'>Accounts</p>
-          <p className='bg-darkGray py-2 px-3 rounded-lg'>Reviews</p>
-          <p className='bg-darkGray py-2 px-3 rounded-lg'>Programs</p>
+          <NavItem title={"Accounts"} icon={<BiWallet/>} items={[
+            {
+              url: "/statement",
+              title: "Statement"
+            },
+            {
+              url: "/withdrawals",
+              title: "Withdrawals"
+            }
+          ]} />
+          <NavItem link={{
+            url: "/",
+            title: "Reviews",
+            icon: <TbTruckDelivery/>
+          }} />
+          <NavItem link={{
+            url: "/",
+            title: "Programs",
+            icon: <TbTruckDelivery/>
+          }} />
           <NavItem link={{
             url: "/rider",
-            title: "Rider"
+            title: "Rider",
+            icon: <TbTruckDelivery/>
           }} />
           <NavItem link={{
             url: "/settings",
-            title: "Settings"
+            title: "Settings",
+            icon: <IoMdSettings/>
           }} />
         </div>
       </div>
