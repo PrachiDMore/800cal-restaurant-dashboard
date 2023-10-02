@@ -1,11 +1,11 @@
 import React from 'react'
 import NavItem from './NavItem'
-import { AiFillHome } from 'react-icons/ai';
-import { MdOutlineAddToPhotos, MdManageAccounts } from 'react-icons/md';
-import {IoMdSettings} from 'react-icons/io'
-import {TbTruckDelivery} from 'react-icons/tb'
-import {BsBox} from 'react-icons/bs'
-import {BiWallet} from 'react-icons/bi'
+import { AiFillHome, AiFillStar } from 'react-icons/ai';
+import { MdOutlineAddToPhotos } from 'react-icons/md';
+import { IoMdSettings } from 'react-icons/io'
+import { TbTruckDelivery } from 'react-icons/tb'
+import { BsBox } from 'react-icons/bs'
+import { BiWallet } from 'react-icons/bi'
 
 const Navbar = () => {
   return (
@@ -25,7 +25,7 @@ const Navbar = () => {
             title: "Add Food",
             icon: <MdOutlineAddToPhotos />
           }} />
-          <NavItem title={"Orders"} icon={<BsBox/>} items={[
+          <NavItem title={"Orders"} icon={<BsBox />} order={true} items={[
             {
               url: "/all-orders",
               title: "All Orders"
@@ -47,7 +47,7 @@ const Navbar = () => {
               title: "Cancelled Orders"
             }
           ]} />
-          <NavItem title={"Accounts"} icon={<BiWallet/>} items={[
+          <NavItem title={"Accounts"} icon={<BiWallet />} order={false} items={[
             {
               url: "/statement",
               title: "Statement"
@@ -58,24 +58,24 @@ const Navbar = () => {
             }
           ]} />
           <NavItem link={{
-            url: "/",
+            url: "/reviews",
             title: "Reviews",
-            icon: <TbTruckDelivery/>
+            icon: <AiFillStar />
           }} />
           <NavItem link={{
             url: "/",
             title: "Programs",
-            icon: <TbTruckDelivery/>
+            icon: <TbTruckDelivery />
           }} />
           <NavItem link={{
             url: "/rider",
             title: "Rider",
-            icon: <TbTruckDelivery/>
+            icon: <TbTruckDelivery />
           }} />
           <NavItem link={{
             url: "/settings",
             title: "Settings",
-            icon: <IoMdSettings/>
+            icon: <IoMdSettings />
           }} />
         </div>
       </div>

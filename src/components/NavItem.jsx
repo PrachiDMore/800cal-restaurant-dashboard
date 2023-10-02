@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FiChevronRight } from 'react-icons/fi';
 
-const NavItem = ({ link, items, title, icon }) => {
+const NavItem = ({ link, items, title, icon, order }) => {
   const [show, setShow] = useState(false)
   return (
     <>
@@ -21,13 +21,13 @@ const NavItem = ({ link, items, title, icon }) => {
                     <FiChevronRight className='text-green' />
                     <div className='flex justify-between items-center w-full'>
                       <div>{item?.title}</div>
-                      <div className='text-xs bg-green/30 font-medium rounded-full px-2 py-1'>2</div>
-                    </div>
+                      <div className={order ? 'text-xs bg-green/30 font-medium rounded-full px-2 py-1' : 'hidden'} > 2</div>
+                  </div>
                   </Link>
                 })
               }
-            </div>
           </div>
+          </div >
       }
     </>
   )
