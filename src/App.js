@@ -12,36 +12,52 @@ import Rider from './pages/Rider';
 import Statement from './pages/Statement';
 import Withdrawal from './pages/Withdrawal';
 import Review from './pages/Review';
+import Programs from './pages/Programs';
 
 import { AuthContextProvider } from "./context/Auth"
 import { FoodContextProvider } from './context/Food';
 import { RiderContextProvider } from './context/Rider';
+import { ThemeContextProvider } from './context/Theme';
+import { ProgramContextProvider } from './context/Program';
+import { IngredientsContextProvider } from './context/Ingredients';
+import Meals from './pages/Meals';
+import { MealsContextProvider } from './context/Meals';
 
 function App() {
   return (
     <>
       <Router>
-        <AuthContextProvider>
-          <FoodContextProvider>
-            <RiderContextProvider>
-              <Routes>
-                <Route path="/" element={<SignIn />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/login" element={<SignIn />} />
-                <Route path="/all-orders" element={<Orders />} />
-                <Route path="/order-details" element={<OrderDetails />} />
-                <Route path="/new-orders" element={<NewOrders />} />
-                <Route path="/list-foods" element={<ListFood />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/rider" element={<Rider />} />
-                <Route path="/reviews" element={<Review />} />
-                <Route path="/statement" element={<Statement />} />
-                <Route path="/withdrawals" element={<Withdrawal />} />
-              </Routes>
-            </RiderContextProvider>
-          </FoodContextProvider>
-        </AuthContextProvider>
+        <ThemeContextProvider>
+          <AuthContextProvider>
+            <FoodContextProvider>
+              <RiderContextProvider>
+                <ProgramContextProvider>
+                  <IngredientsContextProvider>
+                    <MealsContextProvider>
+                      <Routes>
+                        <Route path="/" element={<SignIn />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/login" element={<SignIn />} />
+                        <Route path="/all-orders" element={<Orders />} />
+                        <Route path="/order-details" element={<OrderDetails />} />
+                        <Route path="/new-orders" element={<NewOrders />} />
+                        <Route path="/list-foods" element={<ListFood />} />
+                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/rider" element={<Rider />} />
+                        <Route path="/reviews" element={<Review />} />
+                        <Route path="/statement" element={<Statement />} />
+                        <Route path="/withdrawals" element={<Withdrawal />} />
+                        <Route path="/programs" element={<Programs />} />
+                        <Route path="/meals" element={<Meals />} />
+                      </Routes>
+                    </MealsContextProvider>
+                  </IngredientsContextProvider>
+                </ProgramContextProvider>
+              </RiderContextProvider>
+            </FoodContextProvider>
+          </AuthContextProvider>
+        </ThemeContextProvider>
       </Router>
     </>
   );

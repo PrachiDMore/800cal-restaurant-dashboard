@@ -63,8 +63,13 @@ const Navbar = () => {
             icon: <AiFillStar />
           }} />
           <NavItem link={{
-            url: "/",
+            url: "/programs",
             title: "Programs",
+            icon: <TbTruckDelivery />
+          }} />
+          <NavItem link={{
+            url: "/meals",
+            title: "Meals",
             icon: <TbTruckDelivery />
           }} />
           <NavItem link={{

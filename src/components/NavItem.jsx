@@ -8,16 +8,16 @@ const NavItem = ({ link, items, title, icon, order }) => {
     <>
       {
         link ?
-          <Link to={link?.url} className='flex items-center gap-2 select-none bg-darkGray py-2 px-3 rounded-lg'>{link.icon} {link?.title}</Link>
+          <Link to={link?.url} className='flex items-center gap-2 select-none bg-darkGray py-3 px-3 rounded-lg'>{link.icon} {link?.title}</Link>
           :
           <div>
-            <div onClick={() => { setShow(!show) }} className='flex items-center gap-2 select-none cursor-pointer bg-darkGray py-2 px-3 rounded-lg'>
+            <div onClick={() => { setShow(!show) }} className='flex items-center gap-2 select-none cursor-pointer bg-darkGray py-3 px-3 rounded-lg'>
               <div className=''>{icon}</div> {title}
             </div>
             <div className={show ? 'bg-darkGray rounded-lg flex flex-col mt-2' : "hidden"}>
               {
                 items?.map((item) => {
-                  return <Link to={item?.url} className='flex gap-2 items-center select-none text-sm py-2 px-3 rounded-lg'>
+                  return <Link to={item?.url} className='flex gap-2 items-center select-none text-sm py-3 px-3 rounded-lg'>
                     <FiChevronRight className='text-green' />
                     <div className='flex justify-between items-center w-full'>
                       <div>{item?.title}</div>

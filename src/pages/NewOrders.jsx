@@ -15,7 +15,7 @@ const NewOrders = () => {
   return (
     <>
       <Layout>
-        <div className='w-4/5  Lexend'>
+        <div className='w-4/5 Lexend overflow-hidden'>
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
             New Orders
@@ -32,9 +32,9 @@ const NewOrders = () => {
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
             </div>
 
-            <div className="w-full text-white overflow-hidden rounded-lg">
+            <div className="w-full text-white h-[69vh] overflow-auto rounded-lg">
               <table className="w-full text-left bg-darkGray ">
-                <thead className='overflow-hidden '>
+                <thead className='sticky top-0 overflow-hidden '>
                   <tr className='bg-mediumGray rounded-t-lg'>
                     <th className="px-6 py-3">
                       Id

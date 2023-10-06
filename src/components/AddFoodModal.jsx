@@ -2,21 +2,25 @@ import React, { useState } from 'react'
 import Input from './Input'
 import Button from './Button'
 import axios from 'axios'
+import SearchableSelect from './SearchableSelect'
+import { UseProgramContext } from '../context/Program'
+import { UseIngredientsContext } from '../context/Ingredients'
 
 const AddFoodModal = ({ showModal, setShowModal }) => {
+  const { programOptions } = UseProgramContext()
+  const { ingredientsOptions } = UseIngredientsContext()
   const initialState = {
     "name": "",
     "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YnVyZ2VyfGVufDB8fDB8fHww&w=1000&q=80",
-    "program": "6513bdf1c8a98cbbaabc44f7",
-    "meal": "6514296184ad16ae99f022ff",
     "badge": "",
-    "ingredients": [],
     "protien": "",
     "fat": "",
     "carbs": "",
     "calories": ""
   }
   const [formstate, setFormState] = useState(initialState);
+  const [foodIngredients, setFoodIngredients] = useState([]);
+  const [foodAllergicItems, setFoodAllergicItems] = useState([]);
 
   const handleChange = (e) => {
     setFormState({
@@ -29,7 +33,7 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
     e.preventDefault();
     axios(`${process.env.REACT_APP_BASE_URL}/food/create`, {
       method: "POST",
-      data: formstate,
+      data: {...formstate, ingredients: foodIngredients},
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
@@ -44,8 +48,8 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
 
   return (
     <>
-      <div id="defaultModal" tabindex="-1" aria-hidden="true" className={showModal ? "fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500" : "fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500"}>
-        <div className="relative w-[80%] max-h-full overflow-y-scroll m-auto">
+      <div id="defaultModal" tabindex="-1" aria-hidden="true" className={showModal ? "fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500 flex items-center justify-center" : " flex items-center justify-centerfixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500"}>
+        <div className="relative w-[70%] max-h-full overflow-y-scroll m-auto">
 
           <form onSubmit={handleSubmit} className="relative rounded-lg shadow bg-darkGray">
 
@@ -65,10 +69,13 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
                 <Input value={formstate.name} id={"name"} onChange={handleChange} label={"Name"} type={"text"} placeholder={"Name of Food"} />
                 <Input id={"image"} onChange={handleChange} label={"Image"} type={"file"} placeholder={"Name of Food"} />
               </div>
-              <Input value={formstate.program} id={"program"} onChange={handleChange} label={"Program"} type={"text"} placeholder={"Program"} />
               <Input value={formstate.badge} id={"badge"} onChange={handleChange} label={"Badge"} type={"text"} placeholder={"Badge"} />
-              <Input value={formstate.ingredients} id={"ingredients"} label={"Ingredients"} type={"text"} placeholder={"Ingredients"} />
-              <Input value={formstate.allergy} id={"allergy"} label={"Allergic Items"} type={"text"} placeholder={"Allergic Items"} />
+              <SearchableSelect label={"Ingredients"} onChange={(e) => {
+                setFoodIngredients(e.map((data) => {
+                  return data._id
+                }))
+              }} id={"ingredients"} isMulti={true} placeholder={"Select the Ingredients"} options={ingredientsOptions} />
+              {/* <SearchableSelect label={"Allergic Items"} id={"allergy"} isMulti={true} placeholder={"Select the Allergic Items"} options={ingredientsOptions} /> */}
               <div className='grid grid-cols-4 gap-x-4'>
                 <Input value={formstate.protien} onChange={handleChange} id={"protien"} label={"Protien"} type={"text"} placeholder={"Protien"} />
                 <Input value={formstate.fat} onChange={handleChange} id={"fat"} label={"Fat"} type={"text"} placeholder={"Fat"} />

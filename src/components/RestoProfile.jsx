@@ -1,8 +1,10 @@
 import React from 'react'
 import Input from './Input'
 import Button from './Button'
+import { UseAuthContext } from '../context/Auth'
 
 const RestoProfile = ({ setShowResto, showResto }) => {
+  const { user } = UseAuthContext()
   return (
     <>
       <div id="defaultModal" tabindex="-1" aria-hidden="true" className={showResto ? "flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-100 duration-500" : "-translate-y-[50px] flex items-center fixed top-0 left-0 right-0 z-50  w-full p-4 overflow-x-hidden bg-black/50 overflow-y-auto h-screen opacity-0 pointer-events-none duration-500"}>
@@ -27,10 +29,10 @@ const RestoProfile = ({ setShowResto, showResto }) => {
                 <Input label={"Background Image"} type={"file"} />
               </div>
               <div className='grid grid-cols-2 gap-x-4'>
-                <Input label={"Name"} type={"text"} placeholder={"Enter name of restaurant"} />
-                <Input label={"Tags"} type={"text"} placeholder={"Tags"} />
+                <Input value={user?.title} label={"Name"} type={"text"} placeholder={"Enter name of restaurant"} />
+                <Input value={user?.tags} label={"Tags"} type={"text"} placeholder={"Tags"} />
               </div>
-              <Input label={"Description"} textarea={true} placeholder={"Description"} />
+              <Input value={user?.description} label={"Description"} textarea={true} placeholder={"Description"} />
             </div>
 
             <div className="flex items-center justify-center pb-6  rounded-b ">
