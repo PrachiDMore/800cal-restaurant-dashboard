@@ -5,11 +5,13 @@ import Button from '../components/Button'
 import { BiEditAlt } from "react-icons/bi"
 import { RiDeleteBinLine } from "react-icons/ri"
 import AddRider from '../components/AddRider'
+import { UseRiderContext } from '../context/Rider'
 
 const Rider = () => {
   const [showResto, setShowResto] = useState(false)
   const [addRider, setAddRider] = useState(false)
-
+  const { rider } = UseRiderContext()
+  console.log(rider)
   return (
     <>
       <Layout>
@@ -46,39 +48,27 @@ const Rider = () => {
                 </thead>
 
                 <tbody className='text-sm'>
-                  <tr className="border-b border-mediumGray">
-                    <th className="px-6 py-4 ">#123</th>
-                    <td className="px-6 py-4">
-                      <img className='h-8 w-8 rounded-md' src="/assets/profile.png" alt="" />
-                    </td>
-                    <td className="px-6 py-4">Jhon Doe</td>
-                    <td className="px-6 py-4">jhondoe</td>
-                    <td className="px-6 py-4">jhondoe@gmail.com</td>
-                    <td className="px-6 py-4">1234567890</td>
-                    <td className="px-6 py-4">
-                      <div className='flex items-center gap-6 text-lg'>
-                        <BiEditAlt className='hover:cursor-pointer text-green' />
-                        <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="">
-                    <th className="px-6 py-4 ">#123</th>
-                    <td className="px-6 py-4">
-                      <img className='h-8 w-8 rounded-md' src="/assets/profile.png" alt="" />
-                    </td>
-                    <td className="px-6 py-4">Jhon Doe</td>
-                    <td className="px-6 py-4">jhondoe</td>
-                    <td className="px-6 py-4">jhondoe@gmail.com</td>
-                    <td className="px-6 py-4">1234567890</td>
-                    <td className="px-6 py-4">
-                      <div className='flex items-center gap-6 text-lg'>
-                        <BiEditAlt className='hover:cursor-pointer text-green' />
-                        <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
-                      </div>
-                    </td>
-                  </tr>
-                  
+                  {
+                    rider?.map((data) => {
+                      console.log(data)
+                      return <tr className="border-b border-mediumGray">
+                        <th className="px-6 py-4 ">#{data?._id?.slice(20)}</th>
+                        <td className="px-6 py-4">
+                          <img className='h-8 w-8 rounded-md' src={"/assets/profile.png"} alt="" />
+                        </td>
+                        <td className="px-6 py-4">{data?.firstname} {data?.lastname}</td>
+                        <td className="px-6 py-4">{data?.username}</td>
+                        <td className="px-6 py-4">{data?.email}</td>
+                        <td className="px-6 py-4">{data?.phonenumber}</td>
+                        <td className="px-6 py-4">
+                          <div className='flex items-center gap-6 text-lg'>
+                            <BiEditAlt className='hover:cursor-pointer text-green' />
+                            <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
+                          </div>
+                        </td>
+                      </tr>
+                    })
+                  }
 
                 </tbody>
               </table>
@@ -87,7 +77,7 @@ const Rider = () => {
         </div>
       </Layout>
       <RestoProfile showResto={showResto} setShowResto={setShowResto} />
-      <AddRider setAddRider={setAddRider} addRider={addRider}/>
+      <AddRider setAddRider={setAddRider} addRider={addRider} />
     </>
   )
 }

@@ -4,13 +4,15 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { UseAuthContext } from '../context/Auth';
 
 const SignIn = () => {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("");
+	const { setToken } = UseAuthContext()
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		axios('https://800cal-backend.vercel.app/restaurant/signin', {
+		axios(`${process.env.REACT_APP_BASE_URL}/restaurant/signin`, {
 			method: "POST",
 			data: {
 				username,
@@ -22,7 +24,7 @@ const SignIn = () => {
 					alert(res.data.message)
 				} else {
 					alert(res.data.message)
-					console.log(res.data)
+					setToken(res.data.token)
 					localStorage.setItem("token", res.data.token)
 					window.location.href = "/home"
 				}

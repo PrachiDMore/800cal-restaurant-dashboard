@@ -5,10 +5,12 @@ import { BiEditAlt } from "react-icons/bi"
 import { RiDeleteBinLine } from "react-icons/ri"
 import AddFoodModal from '../components/AddFoodModal'
 import RestoProfile from '../components/RestoProfile'
+import { UseFoodContext } from '../context/Food'
 
 const ListFood = () => {
-  const [showModal, setShowModal] = useState(false)
-  const [showResto, setShowResto] = useState(false)
+  const [showModal, setShowModal] = useState(false);
+  const [showResto, setShowResto] = useState(false);
+  const { food } = UseFoodContext();
 
   return (
     <>
@@ -45,37 +47,25 @@ const ListFood = () => {
                 </thead>
 
                 <tbody className='text-sm'>
-                  <tr className="border-b border-mediumGray">
-                    <th className="px-6 py-4 ">#123</th>
-                    <td className="px-6 py-4">
-                      <img className='h-8 w-8 rounded-md' src="/assets/food.png" alt="" />
-                    </td>
-                    <td className="px-6 py-4">Pancake</td>
-                    <td className="px-6 py-4">Weight Gain</td>
-                    <td className="px-6 py-4">Healthy</td>
-                    <td className="px-6 py-4">
-                      <div className='flex items-center gap-6 text-lg'>
-                        <BiEditAlt className='hover:cursor-pointer text-green' />
-                        <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
-                      </div>
-                    </td>
-                  </tr>
-                  <tr className="">
-                    <th className="px-6 py-4 ">#456</th>
-                    <td className="px-6 py-4">
-                      <img className='h-8 w-8 rounded-md' src="/assets/food.png" alt="" />
-                    </td>
-                    <td className="px-6 py-4">Pancake</td>
-                    <td className="px-6 py-4">Weight Gain</td>
-                    <td className="px-6 py-4">Healthy</td>
-                    <td className="px-6 py-4">
-                      <div className='flex items-center gap-6 text-lg'>
-                        <BiEditAlt className='hover:cursor-pointer text-green' />
-                        <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
-                      </div>
-                    </td>
-                  </tr>
-
+                  {
+                    food?.map((data) => {
+                      return <tr className="border-b border-mediumGray">
+                        <th className="px-6 py-4 ">#{data._id?.slice(20)}</th>
+                        <td className="px-6 py-4">
+                          <img className='h-8 w-8 rounded-md' src="/assets/food.png" alt="" />
+                        </td>
+                        <td className="px-6 py-4">{data?.name}</td>
+                        <td className="px-6 py-4">{data?.program.name}</td>
+                        <td className="px-6 py-4">{data?.badge}</td>
+                        <td className="px-6 py-4">
+                          <div className='flex items-center gap-6 text-lg'>
+                            <BiEditAlt className='hover:cursor-pointer text-green' />
+                            <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
+                          </div>
+                        </td>
+                      </tr>
+                    })
+                  }
                 </tbody>
               </table>
             </div>

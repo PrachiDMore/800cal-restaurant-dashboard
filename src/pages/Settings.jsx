@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Layout from '../components/Layout'
 import RestoProfile from '../components/RestoProfile'
 import Input from '../components/Input'
+import { UseAuthContext } from '../context/Auth'
 
 const Settings = () => {
   const [showResto, setShowResto] = useState(false)
+  const { user } = UseAuthContext();
 
   return (
     <>
@@ -20,28 +22,28 @@ const Settings = () => {
             <div className='grid gap-1'>
               <h1 className='text-lg font-semibold'>Owner Details</h1>
               <div className='grid grid-cols-3 gap-4'>
-                <Input type={"text"} label={"Name"} placeholder={"Enter name of owner"} />
-                <Input type={"number"} label={"Number"} placeholder={"Enter number of owner"} />
-                <Input type={"email"} label={"Email"} placeholder={"Enter email of owner"} />
+                <Input value={user?.ownername} type={"text"} label={"Name"} placeholder={"Enter name of owner"} />
+                <Input value={user?.ownernumber} type={"text"} label={"Number"} placeholder={"Enter number of owner"} />
+                <Input value={user?.owneremail} type={"email"} label={"Email"} placeholder={"Enter email of owner"} />
               </div>
             </div>
             <div className='grid gap-1'>
               <h1 className='text-lg font-semibold'>Manager Details</h1>
               <div className='grid grid-cols-3 gap-4'>
-                <Input type={"text"} label={"Name"} placeholder={"Enter name of owner"} />
-                <Input type={"number"} label={"Number"} placeholder={"Enter number of owner"} />
-                <Input type={"email"} label={"Email"} placeholder={"Enter email of owner"} />
+                <Input value={user?.managername} type={"text"} label={"Name"} placeholder={"Enter name of owner"} />
+                <Input value={user?.managernumber} type={"text"} label={"Number"} placeholder={"Enter number of owner"} />
+                <Input value={user?.manageremail} type={"email"} label={"Email"} placeholder={"Enter email of owner"} />
               </div>
             </div>
             <div className='grid gap-1'>
               <h1 className='text-lg font-semibold'>Contact Details</h1>
               <div className='grid grid-cols-3 gap-4'>
-                <Input type={"text"} label={"Name"} placeholder={"Enter name of owner"} />
-                <Input type={"number"} label={"Number"} placeholder={"Enter number of owner"} />
-                <Input type={"email"} label={"Email"} placeholder={"Enter email of owner"} />
+                <Input value={user?.contactname} type={"text"} label={"Name"} placeholder={"Enter name of owner"} />
+                <Input value={user?.contactnumber} type={"text"} label={"Number"} placeholder={"Enter number of owner"} />
+                <Input value={user?.contactemail} type={"email"} label={"Email"} placeholder={"Enter email of owner"} />
               </div>
             </div>
-            <Input type={"number"} label={"How many meals can I accept"} placeholder={"Enter number of owner"} />
+            <Input value={user?.ordersCanAccept} type={"number"} label={"How many meals can I accept"} placeholder={"Enter number of owner"} />
 
           </div>
         </div>
