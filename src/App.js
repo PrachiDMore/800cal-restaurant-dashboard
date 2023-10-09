@@ -22,6 +22,9 @@ import { ProgramContextProvider } from './context/Program';
 import { IngredientsContextProvider } from './context/Ingredients';
 import Meals from './pages/Meals';
 import { MealsContextProvider } from './context/Meals';
+import ConfirmedOrders from './pages/ConfirmedOrders';
+import CompleteOrders from './pages/CompleteOrders';
+import CancelOrders from './pages/CancelOrders';
 
 function App() {
   return (
@@ -40,6 +43,9 @@ function App() {
                         <Route path="/signup" element={<SignUp />} />
                         <Route path="/login" element={<SignIn />} />
                         <Route path="/all-orders" element={<Orders />} />
+                        <Route path="/confirmed-orders" element={<ConfirmedOrders />} />
+                        <Route path="/complete-orders" element={<CompleteOrders />} />
+                        <Route path="/cancel-orders" element={<CancelOrders />} />
                         <Route path="/order-details" element={<OrderDetails />} />
                         <Route path="/new-orders" element={<NewOrders />} />
                         <Route path="/list-foods" element={<ListFood />} />

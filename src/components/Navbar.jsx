@@ -35,15 +35,15 @@ const Navbar = () => {
               title: "New Orders"
             },
             {
-              url: "/",
+              url: "/confirmed-orders",
               title: "Confirmed Orders"
             },
             {
-              url: "/",
+              url: "/complete-orders",
               title: "Complete Orders"
             },
             {
-              url: "/",
+              url: "/cancel-orders",
               title: "Cancelled Orders"
             }
           ]} />
