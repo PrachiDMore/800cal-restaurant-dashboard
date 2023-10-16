@@ -8,7 +8,7 @@ import RestoProfile from '../components/RestoProfile'
 import { UseFoodContext } from '../context/Food'
 
 const ListFood = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState({ show: false, update: false, data: undefined });
   const [showResto, setShowResto] = useState(false);
   const { food } = UseFoodContext();
 
@@ -19,13 +19,13 @@ const ListFood = () => {
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
             Food Items
-            <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" />
+            <img onClick={() => { setShowResto(!showResto) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12 cursor-pointer' src="/assets/resto.png" alt="" />
           </div>
 
           <div className='w-full p-5 grid gap-4'>
             <div className='w-full flex gap-4 '>
               <input className='w-5/6 outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
-              <Button text={"Add Food"} onClick={() => { setShowModal(true) }} className={"w-1/6"} />
+              <Button text={"Add Food"} onClick={() => { setShowModal({ show: true, update: false, data: undefined }) }} className={"w-1/6"} />
             </div>
 
             <div className='flex gap-4 '>
@@ -57,7 +57,7 @@ const ListFood = () => {
                         <td className="px-6 py-4">{data?.badge}</td>
                         <td className="px-6 py-4">
                           <div className='flex items-center gap-6 text-lg'>
-                            <BiEditAlt className='hover:cursor-pointer text-green' />
+                            <BiEditAlt onClick={() => setShowModal({ show: true, update: true, data: data })} className='hover:cursor-pointer text-green' />
                             <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
                           </div>
                         </td>
