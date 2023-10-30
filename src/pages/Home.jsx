@@ -5,9 +5,12 @@ import { AiOutlineTags } from "react-icons/ai"
 import { BsCart } from "react-icons/bs"
 import RestoProfile from '../components/RestoProfile';
 import Button from '../components/Button';
+import { UseOrderContext } from '../context/Order';
+import moment from 'moment/moment';
 
 const Home = () => {
-	const [showResto, setShowResto] = useState(false)
+	const [showResto, setShowResto] = useState(false);
+	const { orders } = UseOrderContext()
 
 	return (
 		<>
@@ -16,7 +19,7 @@ const Home = () => {
 					{/* topbar */}
 					<div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
 						Dashboard
-						<img onClick={() =>{setShowResto(true)}} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" />
+						<img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" />
 					</div>
 
 					<div className='w-full p-5 grid grid-cols-1 gap-4'>
@@ -60,7 +63,7 @@ const Home = () => {
 							<div className='bg-darkGray rounded-xl p-3'>
 								<p className='font-semibold'>Revenue</p>
 							</div>
-							
+
 							<div className='bg-darkGray rounded-xl p-3'>
 								<p className='font-semibold'>Summary</p>
 								<p className='text-mediumGray leading-5 text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem provident natus quo culpa, illo asperiores nisi magnam id excepturi unde?</p>
@@ -72,13 +75,13 @@ const Home = () => {
 							<p className='font-semibold text-xl '>Orders</p>
 
 							<div className='flex gap-4'>
-								<Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"}/>
-								<Button buttonClassName={"w-auto px-3 py-1"} text={"Print"}/>
+								<Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"} />
+								<Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
 							</div>
 
-							<div className="w-full text-white  overflow-hidden rounded-lg">
-								<table className="w-full text-left bg-darkGray ">
-									<thead className='overflow-hidden '>
+							<div className="w-full text-white  overflow-auto rounded-lg max-h-[40vh]">
+								<table className="w-full text-left bg-darkGray">
+									<thead className='overflow-hidden sticky top-0'>
 										<tr className='bg-mediumGray rounded-t-lg'>
 											<th className="px-6 py-3">
 												Id
@@ -93,7 +96,7 @@ const Home = () => {
 												Description
 											</th>
 											<th className="px-6 py-3">
-											Quantity
+												Restaurant
 											</th>
 											<th className="px-6 py-3">
 												Status
@@ -102,59 +105,36 @@ const Home = () => {
 									</thead>
 
 									<tbody className='text-sm'>
-										<tr className="border-b border-mediumGray">
-											<th className="px-6 py-4 ">
-												#123
-											</th>
-											<td className="px-6 py-4">
-												<div className='flex gap-1 items-center'>
-													<img className='h-8 w-8' src="/assets/profile.png" alt="" />
-													<div>
-														<p>John Doe</p>
-														<p className='text-xs text-mediumGray'>Garden view park, Kuwait</p>
-													</div>
-												</div>
-											</td>
-											<td className="px-6 py-4">
-											12th July, 2023 23:00
-											</td>
-											<td className="px-6 py-4">
-											Home delivery
-											</td>
-											<td className="px-6 py-4">
-											1
-											</td>
-											<td className="px-6 py-4">
-											Being delivered
-											</td>
-										</tr>
-										<tr className="">
-											<th className="px-6 py-4 ">
-												#123
-											</th>
-											<td className="px-6 py-4">
-												<div className='flex gap-1 items-center'>
-													<img className='h-8 w-8' src="/assets/profile.png" alt="" />
-													<div>
-														<p>John Doe</p>
-														<p className='text-xs text-mediumGray'>Garden view park, Kuwait</p>
-													</div>
-												</div>
-											</td>
-											<td className="px-6 py-4">
-											12th July, 2023 23:00
-											</td>
-											<td className="px-6 py-4">
-											Home delivery
-											</td>
-											<td className="px-6 py-4">
-											1
-											</td>
-											<td className="px-6 py-4">
-											Being delivered
-											</td>
-										</tr>
-										
+										{
+											orders?.map((order) => {
+												return <tr key={order?._id} className="border-b border-mediumGray">
+													<th className="px-6 py-4 ">
+														#{order?._id?.slice(18)}
+													</th>
+													<td className="px-6 py-4">
+														<div className='flex gap-1 items-center'>
+															<img className='h-8 w-8 rounded-lg' src={order?.customer?.image} alt="" />
+															<div>
+																<p>{order?.customer?.firstname} {order?.customer?.lastname}</p>
+																<p className='text-xs text-mediumGray'>{order?.customer?.address}</p>
+															</div>
+														</div>
+													</td>
+													<td className="px-6 py-4">
+														{moment(order?.date).format("Do MMM, YYYY - HH:mm")}
+													</td>
+													<td className="px-6 py-4">
+														{order?.program?.name} ({order?.meals?.name})
+													</td>
+													<td className="px-6 py-4">
+														{order?.restaurant?.title}
+													</td>
+													<td className="px-6 py-4">
+														Being delivered
+													</td>
+												</tr>
+											})
+										}
 									</tbody>
 								</table>
 							</div>
@@ -164,7 +144,7 @@ const Home = () => {
 
 				</div>
 			</Layout>
-			<RestoProfile showResto={showResto} setShowResto={setShowResto}/>
+			<RestoProfile showResto={showResto} setShowResto={setShowResto} />
 		</>
 	)
 }

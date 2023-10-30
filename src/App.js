@@ -25,6 +25,7 @@ import { MealsContextProvider } from './context/Meals';
 import ConfirmedOrders from './pages/ConfirmedOrders';
 import CompleteOrders from './pages/CompleteOrders';
 import CancelOrders from './pages/CancelOrders';
+import { OrderContextProvider } from './context/Order';
 
 function App() {
   return (
@@ -37,26 +38,28 @@ function App() {
                 <ProgramContextProvider>
                   <IngredientsContextProvider>
                     <MealsContextProvider>
-                      <Routes>
-                        <Route path="/" element={<SignIn />} />
-                        <Route path="/home" element={<Home />} />
-                        <Route path="/signup" element={<SignUp />} />
-                        <Route path="/login" element={<SignIn />} />
-                        <Route path="/all-orders" element={<Orders />} />
-                        <Route path="/confirmed-orders" element={<ConfirmedOrders />} />
-                        <Route path="/complete-orders" element={<CompleteOrders />} />
-                        <Route path="/cancel-orders" element={<CancelOrders />} />
-                        <Route path="/order-details" element={<OrderDetails />} />
-                        <Route path="/new-orders" element={<NewOrders />} />
-                        <Route path="/list-foods" element={<ListFood />} />
-                        <Route path="/settings" element={<Settings />} />
-                        <Route path="/rider" element={<Rider />} />
-                        <Route path="/reviews" element={<Review />} />
-                        <Route path="/statement" element={<Statement />} />
-                        <Route path="/withdrawals" element={<Withdrawal />} />
-                        <Route path="/programs" element={<Programs />} />
-                        <Route path="/meals" element={<Meals />} />
-                      </Routes>
+                      <OrderContextProvider>
+                        <Routes>
+                          <Route path="/" element={<SignIn />} />
+                          <Route path="/home" element={<Home />} />
+                          <Route path="/signup" element={<SignUp />} />
+                          <Route path="/login" element={<SignIn />} />
+                          <Route path="/all-orders" element={<Orders />} />
+                          <Route path="/confirmed-orders" element={<ConfirmedOrders />} />
+                          <Route path="/complete-orders" element={<CompleteOrders />} />
+                          <Route path="/cancel-orders" element={<CancelOrders />} />
+                          <Route path="/order-details" element={<OrderDetails />} />
+                          <Route path="/new-orders" element={<NewOrders />} />
+                          <Route path="/list-foods" element={<ListFood />} />
+                          <Route path="/settings" element={<Settings />} />
+                          <Route path="/rider" element={<Rider />} />
+                          <Route path="/reviews" element={<Review />} />
+                          <Route path="/statement" element={<Statement />} />
+                          <Route path="/withdrawals" element={<Withdrawal />} />
+                          <Route path="/programs" element={<Programs />} />
+                          <Route path="/meals" element={<Meals />} />
+                        </Routes>
+                      </OrderContextProvider>
                     </MealsContextProvider>
                   </IngredientsContextProvider>
                 </ProgramContextProvider>
