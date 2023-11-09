@@ -6,7 +6,7 @@ import ListFood from './pages/ListFood';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/Signup';
 import NewOrders from './pages/NewOrders';
-import OrderDetails from './pages/OrderDetails';
+import OrderDetails from './pages/orders/OrderDetails';
 import Settings from './pages/Settings';
 import Rider from './pages/Rider';
 import Statement from './pages/Statement';
@@ -26,6 +26,7 @@ import ConfirmedOrders from './pages/ConfirmedOrders';
 import CompleteOrders from './pages/CompleteOrders';
 import CancelOrders from './pages/CancelOrders';
 import { OrderContextProvider } from './context/Order';
+import AllOrders from './pages/orders/all-orders/AllOrders';
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
                           <Route path="/home" element={<Home />} />
                           <Route path="/signup" element={<SignUp />} />
                           <Route path="/login" element={<SignIn />} />
-                          <Route path="/all-orders" element={<Orders />} />
+                          <Route path="/all-orders" element={<AllOrders />} />
+                          <Route path="/order/:_id" element={<OrderDetails />} />
                           <Route path="/confirmed-orders" element={<ConfirmedOrders />} />
                           <Route path="/complete-orders" element={<CompleteOrders />} />
                           <Route path="/cancel-orders" element={<CancelOrders />} />

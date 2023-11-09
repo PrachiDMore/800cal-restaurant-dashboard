@@ -18,7 +18,8 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
     "fat": "",
     "carbs": "",
     "calories": "",
-    "category": "snack"
+    "category": "snack",
+    "foodcode": ""
   }
   const [formstate, setFormState] = useState(initialState);
   const [foodIngredients, setFoodIngredients] = useState([]);
@@ -78,6 +79,7 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
                 <Input id={"image"} onChange={handleChange} label={"Image"} type={"file"} placeholder={"Name of Food"} />
               </div>
               <Input value={formstate.badge} id={"badge"} onChange={handleChange} label={"Badge"} type={"text"} placeholder={"Badge"} />
+              <Input value={formstate.foodcode} id={"foodcode"} onChange={handleChange} label={"Food Code"} type={"text"} placeholder={"Food Code"} />
               <SearchableSelect label={"Ingredients"} onChange={(e) => {
                 setFoodIngredients(e.map((data) => {
                   return data._id
@@ -104,6 +106,7 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
                 <Input value={formstate.carbs} onChange={handleChange} id={"carbs"} label={"Carbs"} type={"text"} placeholder={"Carbs"} />
                 <Input value={formstate.calories} onChange={handleChange} id={"calories"} label={"Calories"} type={"text"} placeholder={"Calories"} />
               </div>
+              <Input value={formstate.description} id={"description"} onChange={handleChange} label={"Description"} type={"text"} placeholder={"Description"} />
             </div>
             <div className="flex items-center justify-center pb-6  rounded-b ">
               <Button text={"Add Food"} className={"w-1/6"} />

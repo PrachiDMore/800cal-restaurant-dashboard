@@ -4,7 +4,7 @@
   font-family: 'Lexend';
 }
 
-#root{
+#root {
   max-height: 100vh;
   overflow-y: hidden;
 }
@@ -14,9 +14,10 @@
   background: linear-gradient(90deg, rgba(79, 227, 138, 1) 0%, rgba(28, 195, 122, 1) 100%);
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 0;
 }
-.css-1dimb5e-singleValue{
+
+.css-1dimb5e-singleValue {
   color: white !important;
 }

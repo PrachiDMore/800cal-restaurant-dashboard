@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 const Layout = ({ children, navbar = true }) => {
   return (
     <>
-      <div className='Lexend w-screen max-w-screen min-h-screen bg-accent flex text-white'>
+      <div className='Lexend w-screen max-w-screen min-h-screen bg-accent flex text-white max-h-screen'>
         {navbar && <Navbar />}
         {children}
         {/* <div className='w-4/5  Lexend'>

@@ -16,7 +16,6 @@ const OrderContextProvider = ({ children }) => {
 			}
 		})
 			.then((res) => {
-				console.log("order", res.data.calendar)
 				setOrders(res.data.calendar)
 			})
 			.catch((err) => {

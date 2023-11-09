@@ -6,11 +6,13 @@ import { IoMdSettings } from 'react-icons/io'
 import { TbTruckDelivery } from 'react-icons/tb'
 import { BsBox } from 'react-icons/bs'
 import { BiWallet } from 'react-icons/bi'
+import { UseOrderContext } from '../context/Order';
 
 const Navbar = () => {
+  const { orders } = UseOrderContext();
   return (
     <>
-      <div className='w-1/5 p-5 Lexend border-r border-textGray'>
+      <div className='w-1/5 p-5 Lexend border-r border-textGray max-h-screen h-screen overflow-hidden'>
         <div>
           <img className='h-20 w-20' src="/assets/logo.png" alt="" />
         </div>
@@ -28,23 +30,28 @@ const Navbar = () => {
           <NavItem title={"Orders"} icon={<BsBox />} order={true} items={[
             {
               url: "/all-orders",
-              title: "All Orders"
+              title: "All Orders",
+              number: orders.length
             },
             {
               url: "/new-orders",
-              title: "New Orders"
+              title: "New Orders",
+              number: orders.length
             },
             {
               url: "/confirmed-orders",
-              title: "Confirmed Orders"
+              title: "Confirmed Orders",
+              number: orders.length
             },
             {
               url: "/complete-orders",
-              title: "Complete Orders"
+              title: "Complete Orders",
+              number: orders.length
             },
             {
               url: "/cancel-orders",
-              title: "Cancelled Orders"
+              title: "Cancelled Orders",
+              number: orders.length
             }
           ]} />
           <NavItem title={"Accounts"} icon={<BiWallet />} order={false} items={[
