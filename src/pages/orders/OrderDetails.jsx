@@ -38,7 +38,7 @@ const OrderDetails = () => {
       method: "PATCH",
       data: {
         rider: value,
-        delivery_status: "assigned"
+        delivery_status: "assigned",
       }
     })
       .then((res) => {
