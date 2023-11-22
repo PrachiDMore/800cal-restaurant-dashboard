@@ -6,13 +6,13 @@ import axios from 'axios'
 import SearchableSelect from './SearchableSelect'
 import { UseProgramContext } from '../context/Program'
 import { UseIngredientsContext } from '../context/Ingredients'
+import UploadComponent from './UploadComponent'
 
 const AddFoodModal = ({ showModal, setShowModal }) => {
   const { programOptions } = UseProgramContext()
   const { ingredientsOptions } = UseIngredientsContext()
   const initialState = {
     "name": "",
-    "image": "https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YnVyZ2VyfGVufDB8fDB8fHww&w=1000&q=80",
     "badge": "",
     "protien": "",
     "fat": "",
@@ -23,6 +23,7 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
   }
   const [formstate, setFormState] = useState(initialState);
   const [foodIngredients, setFoodIngredients] = useState([]);
+  const [image, setImage] = useState("")
 
   const handleChange = (e) => {
     setFormState({
@@ -42,7 +43,7 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
     e.preventDefault();
     axios(`${process.env.REACT_APP_BASE_URL}/food/create`, {
       method: "POST",
-      data: { ...formstate, ingredients: foodIngredients },
+      data: { ...formstate, ingredients: foodIngredients, image },
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
       }
@@ -74,11 +75,11 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
             </div>
 
             <div className="p-6 space-y-4">
+              <UploadComponent setImage={setImage} image={image} />
               <div className='grid grid-cols-2 gap-x-4'>
                 <Input value={formstate.name} id={"name"} onChange={handleChange} label={"Name"} type={"text"} placeholder={"Name of Food"} />
-                <Input id={"image"} onChange={handleChange} label={"Image"} type={"file"} placeholder={"Name of Food"} />
+                <Input value={formstate.badge} id={"badge"} onChange={handleChange} label={"Badge"} type={"text"} placeholder={"Badge"} />
               </div>
-              <Input value={formstate.badge} id={"badge"} onChange={handleChange} label={"Badge"} type={"text"} placeholder={"Badge"} />
               <Input value={formstate.foodcode} id={"foodcode"} onChange={handleChange} label={"Food Code"} type={"text"} placeholder={"Food Code"} />
               <SearchableSelect label={"Ingredients"} onChange={(e) => {
                 setFoodIngredients(e.map((data) => {

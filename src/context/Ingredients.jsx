@@ -7,14 +7,6 @@ const IngredientsContextProvider = ({ children }) => {
 
 	const [ingredients, setIngredients] = useState([])
 	const [ingredientsOptions, setIngredientsOptions] = useState([])
-	// useEffect(() => {
-	// 	const tokenInfo = localStorage.getItem("token");
-	// 	if (tokenInfo) {
-	// 		setToken(tokenInfo)
-	// 	} else {
-	// 		setToken("")
-	// 	}
-	// }, []);
 
 	useEffect(() => {
 		axios(`${process.env.REACT_APP_BASE_URL}/ingredients/`, {

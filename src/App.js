@@ -20,13 +20,16 @@ import { RiderContextProvider } from './context/Rider';
 import { ThemeContextProvider } from './context/Theme';
 import { ProgramContextProvider } from './context/Program';
 import { IngredientsContextProvider } from './context/Ingredients';
-import Meals from './pages/Meals';
+import Meals from "./pages/meals/Meals"
 import { MealsContextProvider } from './context/Meals';
 import ConfirmedOrders from './pages/ConfirmedOrders';
 import CompleteOrders from './pages/CompleteOrders';
 import CancelOrders from './pages/CancelOrders';
 import { OrderContextProvider } from './context/Order';
 import AllOrders from './pages/orders/all-orders/AllOrders';
+import ListIngredients from './pages/ingredients/ListIngredients';
+import CreateIngredients from './pages/ingredients/create/Create';
+import MealInfo from './pages/meals/MealInfo';
 
 function App() {
   return (
@@ -60,6 +63,9 @@ function App() {
                           <Route path="/withdrawals" element={<Withdrawal />} />
                           <Route path="/programs" element={<Programs />} />
                           <Route path="/meals" element={<Meals />} />
+                          <Route path="/meal/:_id" element={<MealInfo />} />
+                          <Route path="/ingredients" element={<ListIngredients />} />
+                          <Route path="/ingredients/create" element={<CreateIngredients />} />
                         </Routes>
                       </OrderContextProvider>
                     </MealsContextProvider>

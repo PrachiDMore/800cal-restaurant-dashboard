@@ -8,11 +8,11 @@ const NavItem = ({ link, items, title, icon, order }) => {
     <>
       {
         link ?
-          <Link to={link?.url} className='flex items-center gap-2 select-none bg-darkGray py-3 px-3 rounded-lg'>{link.icon} {link?.title}</Link>
+          <Link to={link?.url} className='flex items-center gap-2 select-none bg-darkGray py-3 px-3 rounded-lg'>{link?.title}</Link>
           :
           <div>
             <div onClick={() => { setShow(!show) }} className='flex items-center gap-2 select-none cursor-pointer bg-darkGray py-3 px-3 rounded-lg'>
-              <div className=''>{icon}</div> {title}
+               {title}
             </div>
             <div className={show ? 'bg-darkGray rounded-lg flex flex-col mt-2' : "hidden"}>
               {

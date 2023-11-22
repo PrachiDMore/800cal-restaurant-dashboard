@@ -37,7 +37,6 @@ const ProgramContextProvider = ({ children }) => {
 			const data = program.map((obj) => {
 				return { ...obj, label: obj?.name, value: obj._id }
 			})
-			console.log(program)
 			setProgramOptions(data)
 		}
 	}, [program]);

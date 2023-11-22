@@ -7,6 +7,7 @@ import RestoProfile from '../components/RestoProfile';
 import Button from '../components/Button';
 import { UseOrderContext } from '../context/Order';
 import moment from 'moment/moment';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const [showResto, setShowResto] = useState(false);
@@ -30,7 +31,7 @@ const Home = () => {
 									<p className='font-light'>Current Orders</p>
 									<PiNotepad className='text-green text-3xl' />
 								</div>
-								<p className='text-2xl font-bold'>23</p>
+								<p className='text-2xl font-bold'>{orders.filter((data) => data.status === "processing").length}</p>
 							</div>
 
 							<div className='bg-darkGray rounded-xl p-3 py-5'>
@@ -38,7 +39,7 @@ const Home = () => {
 									<p className='font-light'>Total Orders</p>
 									<BsCart className='text-green text-2xl font-bold' />
 								</div>
-								<p className='text-2xl font-bold'>150</p>
+								<p className='text-2xl font-bold'>{orders.length}</p>
 							</div>
 
 							<div className='bg-darkGray rounded-xl p-3 py-5'>
@@ -108,9 +109,9 @@ const Home = () => {
 										{
 											orders?.map((order) => {
 												return <tr key={order?._id} className="border-b border-mediumGray">
-													<th className="px-6 py-4 ">
+													<Link to={`/order/${order?._id}`} className="flex justify-center items-center h-full font-bold px-6 py-4 ">
 														#{order?._id?.slice(18)}
-													</th>
+													</Link>
 													<td className="px-6 py-4">
 														<div className='flex gap-1 items-center'>
 															<img className='h-8 w-8 rounded-lg' src={order?.customer?.image} alt="" />

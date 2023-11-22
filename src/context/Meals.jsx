@@ -37,7 +37,6 @@ const MealsContextProvider = ({ children }) => {
 			const data = meals.map((obj) => {
 				return { ...obj, label: obj?.name, value: obj._id }
 			})
-			console.log(data);
 			setMealsOptions(data)
 		}
 	}, [meals]);

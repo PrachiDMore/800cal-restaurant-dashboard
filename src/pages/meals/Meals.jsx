@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import Button from '../components/Button'
+import Layout from '../../components/Layout'
+import Button from '../../components/Button'
 import { BiEditAlt } from "react-icons/bi"
 import { RiDeleteBinLine } from "react-icons/ri"
-import RestoProfile from '../components/RestoProfile'
-import { UseMealsContext } from '../context/Meals'
+import RestoProfile from '../../components/RestoProfile'
+import { UseMealsContext } from '../../context/Meals'
+import { Link } from 'react-router-dom'
 
 const Meals = () => {
   const { meals } = UseMealsContext();
@@ -37,8 +38,8 @@ const Meals = () => {
                     <th className="px-6 py-3">Id</th>
                     <th className="px-6 py-3">Image</th>
                     <th className="px-6 py-3">Name</th>
-                    <th className="px-6 py-3">Rating</th>
                     <th className="px-6 py-3">Program</th>
+                    <th className="px-6 py-3">Apply</th>
                   </tr>
                 </thead>
 
@@ -46,13 +47,13 @@ const Meals = () => {
                   {
                     meals?.map((data) => {
                       return <tr className="border-b border-mediumGray">
-                        <th className="px-6 py-4 ">#{data._id?.slice(20)}</th>
+                        <th className="px-6 py-4 "><Link to={`/meal/${data._id}`}>#{data._id?.slice(20)}</Link></th>
                         <td className="px-6 py-4">
                           <img className='h-10 w-10 rounded-md' src={data?.logo} alt="" />
                         </td>
                         <td className="px-6 py-4">{data?.name}</td>
-                        <td className="px-6 py-4">{data?.rating || 1}/5</td>
                         <td className="px-6 py-4">{data?.program?.name}</td>
+                        <td className="px-6 py-4 cursor-pointer"><Link to={`/meal/${data._id}`}>View</Link></td>
                       </tr>
                     })
                   }

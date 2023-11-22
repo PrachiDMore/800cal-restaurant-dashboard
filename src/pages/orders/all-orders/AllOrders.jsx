@@ -15,7 +15,7 @@ const AllOrders = () => {
         <div className='w-4/5  Lexend'>
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
-            All Orders {orders?.length}
+            All Orders
           </div>
 
           <div className='w-full p-5 grid gap-4'>

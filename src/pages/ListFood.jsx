@@ -47,11 +47,11 @@ const ListFood = () => {
 
                 <tbody className='text-sm'>
                   {
-                    food?.map((data) => {
-                      return <tr className="border-b border-mediumGray">
+                    food?.map((data, index) => {
+                      return <tr key={index} className="border-b border-mediumGray">
                         <th className="px-6 py-4 ">#{data._id?.slice(20)}</th>
                         <td className="px-6 py-4">
-                          <img className='h-8 w-8 rounded-md' src="/assets/food.png" alt="" />
+                          <img className='h-8 w-8 rounded-md' src={data?.image} alt="" />
                         </td>
                         <td className="px-6 py-4">{data?.name}</td>
                         <td className="px-6 py-4">{data?.badge}</td>
