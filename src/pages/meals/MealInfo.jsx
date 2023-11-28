@@ -12,6 +12,7 @@ const MealInfo = () => {
 	const navigate = useNavigate()
 	const { program } = UseProgramContext();
 	const [appliedPrice, setAppliedPrice] = useState(0)
+	const [isApplied, setIsApplied] = useState(false)
 	const { _id } = useParams();
 	const initialFormState = {
 		name: "",
@@ -40,10 +41,13 @@ const MealInfo = () => {
 					})
 						.then((res) => {
 							if (res.data.error) {
-								alert(res.data.message)
+								// alert(res.data.message)
 								return
 							}
-							console.log(res.data.info)
+							else {
+								setIsApplied(true)
+							}
+							setAppliedPrice(res.data.info.price)
 						})
 						.catch((err) => {
 							alert(err.message)
@@ -108,9 +112,9 @@ const MealInfo = () => {
 								label: data?.name,
 								value: data?._id
 							}
-						})} label={"Program"} id={"program"} value={formState.program} onChange={handleChange} />
+						})} label={"Program"} id={"program"} value={formState?.program?._id} onChange={handleChange} />
 						<Input disabled={true} placeholder={"Enter the meal description"} label={"Description"} id={"description"} type={"text"} value={formState.description} textarea={true} onChange={handleChange} />
-						<Button type={"submit"} text={"Submit"} />
+						{!isApplied && <Button type={"submit"} text={"Submit"} />}
 					</form>
 				</div>
 			</Layout>

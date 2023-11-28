@@ -30,6 +30,7 @@ import AllOrders from './pages/orders/all-orders/AllOrders';
 import ListIngredients from './pages/ingredients/ListIngredients';
 import CreateIngredients from './pages/ingredients/create/Create';
 import MealInfo from './pages/meals/MealInfo';
+import RiderForm from './pages/RiderForm';
 
 function App() {
   return (
@@ -58,6 +59,9 @@ function App() {
                           <Route path="/list-foods" element={<ListFood />} />
                           <Route path="/settings" element={<Settings />} />
                           <Route path="/rider" element={<Rider />} />
+                          <Route path="/rider/create" element={<RiderForm />} />
+                          <Route path="/rider/:_id" element={<RiderForm />} />
+
                           <Route path="/reviews" element={<Review />} />
                           <Route path="/statement" element={<Statement />} />
                           <Route path="/withdrawals" element={<Withdrawal />} />

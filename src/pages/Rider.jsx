@@ -6,12 +6,12 @@ import { BiEditAlt } from "react-icons/bi"
 import { RiDeleteBinLine } from "react-icons/ri"
 import AddRider from '../components/AddRider'
 import { UseRiderContext } from '../context/Rider'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Rider = () => {
   const [showResto, setShowResto] = useState(false)
-  const [addRider, setAddRider] = useState(false)
   const { rider } = UseRiderContext()
-  console.log(rider)
+  const navigate = useNavigate()
   return (
     <>
       <Layout>
@@ -25,7 +25,7 @@ const Rider = () => {
           <div className='w-full p-5 grid gap-4'>
             <div className='w-full flex gap-4 '>
               <input className='w-5/6 outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
-              <Button text={"Add Rider"} onClick={() => { setAddRider(true) }} className={"w-1/6"} />
+              <Button text={"Add Rider"} onClick={() => { navigate("/rider/create") }} className={"w-1/6"} />
             </div>
 
             <div className='flex gap-4 '>
@@ -43,29 +43,21 @@ const Rider = () => {
                     <th className="px-6 py-3">Username</th>
                     <th className="px-6 py-3">Email</th>
                     <th className="px-6 py-3">Phone Number</th>
-                    <th className="px-6 py-3">Action</th>
                   </tr>
                 </thead>
 
                 <tbody className='text-sm'>
                   {
-                    rider?.map((data) => {
-                      console.log(data)
-                      return <tr className="border-b border-mediumGray">
-                        <th className="px-6 py-4 ">#{data?._id?.slice(20)}</th>
+                    rider?.map((data, index) => {
+                      return <tr key={index} className="border-b border-mediumGray">
+                        <th className="px-6 py-4 "><Link to={`/rider/${data?._id}`}>#{data?._id?.slice(20)}</Link></th>
                         <td className="px-6 py-4">
-                          <img className='h-8 w-8 rounded-md' src={"/assets/profile.png"} alt="" />
+                          <img className='h-8 w-8 rounded-md' src={data?.image} alt="" />
                         </td>
                         <td className="px-6 py-4">{data?.firstname} {data?.lastname}</td>
                         <td className="px-6 py-4">{data?.username}</td>
                         <td className="px-6 py-4">{data?.email}</td>
                         <td className="px-6 py-4">{data?.phonenumber}</td>
-                        <td className="px-6 py-4">
-                          <div className='flex items-center gap-6 text-lg'>
-                            <BiEditAlt className='hover:cursor-pointer text-green' />
-                            <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
-                          </div>
-                        </td>
                       </tr>
                     })
                   }
@@ -77,7 +69,6 @@ const Rider = () => {
         </div>
       </Layout>
       <RestoProfile showResto={showResto} setShowResto={setShowResto} />
-      <AddRider setAddRider={setAddRider} addRider={addRider} />
     </>
   )
 }
