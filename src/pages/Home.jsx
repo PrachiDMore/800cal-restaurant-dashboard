@@ -60,7 +60,7 @@ const Home = () => {
 						</div>
 
 						{/* 2nd section */}
-						<div className='w-full grid grid-cols-2 gap-x-4'>
+						<div className='w-full hidden grid-cols-2 gap-x-4'>
 							<div className='bg-darkGray rounded-xl p-3'>
 								<p className='font-semibold'>Revenue</p>
 							</div>

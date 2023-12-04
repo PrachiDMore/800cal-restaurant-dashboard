@@ -58,7 +58,7 @@ const ListFood = () => {
                         <td className="px-6 py-4">
                           <div className='flex items-center gap-6 text-lg'>
                             <BiEditAlt onClick={() => setShowModal({ show: true, update: true, data: data })} className='hover:cursor-pointer text-green' />
-                            <RiDeleteBinLine className='hover:cursor-pointer text-red-600' />
+                            {/* <RiDeleteBinLine className='hover:cursor-pointer text-red-600' /> */}
                           </div>
                         </td>
                       </tr>

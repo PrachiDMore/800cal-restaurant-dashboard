@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../../components/Layout'
 import SearchableSelect from '../../components/SearchableSelect'
 import Button from '../../components/Button'
@@ -18,12 +18,21 @@ const OrderDetails = () => {
   const [data, setData] = useState();
   const [value, setValue] = useState("");
 
+  const testRef = useRef()
+
   useEffect(() => {
     if (_id) {
       axios(`${process.env.REACT_APP_BASE_URL}/calendar/order/${_id}`, {
         method: "GET"
       })
         .then((res) => {
+          // axios(`${process.env.REACT_APP_BASE_URL}/meal-application/${res.data?.meals?._id}`, {
+          //   method: "GET",
+          //   headers: `Bearer ${localStorage.getItem("token")}`
+          // })
+          // .then((res) => {
+          //   console.log(res.data)
+          // })
           setData(res.data?.calendar)
           setValue(res.data.calendar?.rider._id)
         })
@@ -39,11 +48,12 @@ const OrderDetails = () => {
       data: {
         rider: value,
         delivery_status: "assigned",
+        status: "assigned"
       }
     })
       .then((res) => {
-        setData(res.data?.calendar)
-        setValue(res.data?.calendar?.rider._id)
+        setData(res.data?.order)
+        setValue(res.data?.order?.rider._id)
       })
       .catch((err) => {
 
@@ -55,7 +65,7 @@ const OrderDetails = () => {
       <Layout>
         <div className='w-4/5  Lexend'>
           {/* topbar */}
-          <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
+          <div ref={testRef} className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
             Order Details
             {/* <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" /> */}
           </div>
@@ -63,7 +73,7 @@ const OrderDetails = () => {
           <div className='w-full p-5'>
             <div className='w-full flex justify-between items-center'>
               <h1 className='text-2xl font-medium'>Current Status: <span className='text-green capitalize'>{data?.status}</span></h1>
-              <div><Button text={"Update Status"} /></div>
+              {/* <div><Button text={"Update Status"} /></div> */}
             </div>
 
             <div className='w-full grid gap-5'>
@@ -113,16 +123,21 @@ const OrderDetails = () => {
                       </div>
                     </div>
                     <div className=' '>
-                      <Select onChange={(e) => { setValue(e.target.value) }} options={rider?.map((data) => {
-                        return { ...data, label: data.username, value: data._id }
-                      })} value={value} />
+                      <Select onChange={(e) => { setValue(e.target.value) }} options={[
+                        {
+                          label: "Select",
+                          value: ""
+                        },
+                        ...rider?.map((data) => {
+                          return { ...data, label: data?.username, value: data._id }
+                        })
+                      ]} value={value} />
                       <Button onClick={assignRider} buttonClassName={"mt-2 w-auto text-sm px-3 py-1"} text={"Assign Driver"} />
                     </div>
                   </div>
                 </div>
                 <div className='bg-darkGray w-1/2 p-4 rounded-lg'>
                   <p className='text-lg font-medium'>Summary</p>
-
                   <div className="w-full text-white mt-4 overflow-hidden rounded-lg">
                     <table className="w-full text-left bg-darkGray ">
                       <tbody className='text-sm'>
@@ -130,10 +145,10 @@ const OrderDetails = () => {
                           data?.food?.map((foodItem, index) => {
                             return <tr key={index} className="border-b border-mediumGray">
                               <td className="px-6 py-4 ">
-                                <img className='h-8 w-8' src="/assets/food.png" alt="" />
+                                <img className='h-8 w-8' src={foodItem?.image} alt="" />
                               </td>
                               <td className="px-6 py-4">
-                                <p className='font-bold'>{foodItem?.name} <br /><span className='text-xs text-textGray'>Note: {data?.note[index] || "None"}</span></p>
+                                <p className='font-bold'>{foodItem?.name} <br /><span className='text-xs text-textGray'>Note: {data?.note && data?.note?.length != 0 ? data?.note[index] : "None"}</span></p>
                               </td>
                               <td className="px-6 py-4">
                                 <p className='text-sm '>Calories {foodItem?.calories}</p>
@@ -168,7 +183,7 @@ const OrderDetails = () => {
                             <p className='text-base '>Total</p>
                           </td>
                           <td className="px-6 py-4">
-                            <p className=' '>KWD 126.00</p>
+                            <p className=' '>KWD {data?.order?.category === "gold" ? data?.meals?.goldprice : data?.order?.category === "silver" ? data?.meals?.silverprice : data?.meals?.platinumprice}</p>
                           </td>
                         </tr>
 
@@ -180,7 +195,7 @@ const OrderDetails = () => {
 
               <div className='w-full flex gap-5'>
                 <Button buttonClassName={"w-auto px-3 py-1"} text={"Print sticker"} />
-                <Button buttonClassName={"w-auto px-3 py-1 bg-accent border border-green"} text={"Download invoive"} />
+                <Button onClick={() => window.print()} buttonClassName={"w-auto px-3 py-1 bg-accent border border-green"} text={"Download invoive"} />
               </div>
             </div>
           </div>

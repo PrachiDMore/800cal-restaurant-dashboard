@@ -55,8 +55,8 @@ const AllOrders = () => {
 
                 <tbody className='text-sm'>
                 {
-											orders?.map((order) => {
-												return <tr key={order?._id} className="border-b border-mediumGray ">
+											orders?.map((order, index) => {
+												return <tr key={index} className="border-b border-mediumGray ">
 													<Link to={`/order/${order?._id}`} className="flex items-center px-6 py-4 ">
 														#{order?._id?.slice(18)}
 													</Link>

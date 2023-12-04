@@ -9,8 +9,8 @@ import NewOrders from './pages/NewOrders';
 import OrderDetails from './pages/orders/OrderDetails';
 import Settings from './pages/Settings';
 import Rider from './pages/Rider';
-import Statement from './pages/Statement';
-import Withdrawal from './pages/Withdrawal';
+import Statement from './pages/accounts/Statement';
+import Withdrawal from './pages/accounts/Withdrawal';
 import Review from './pages/Review';
 import Programs from './pages/Programs';
 
@@ -70,6 +70,7 @@ function App() {
                           <Route path="/meal/:_id" element={<MealInfo />} />
                           <Route path="/ingredients" element={<ListIngredients />} />
                           <Route path="/ingredients/create" element={<CreateIngredients />} />
+                          <Route path="/ingredients/:_id" element={<CreateIngredients />} />
                         </Routes>
                       </OrderContextProvider>
                     </MealsContextProvider>

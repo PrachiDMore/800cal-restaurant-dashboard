@@ -9,26 +9,28 @@ const IngredientsContextProvider = ({ children }) => {
 	const [ingredientsOptions, setIngredientsOptions] = useState([])
 
 	useEffect(() => {
-		axios(`${process.env.REACT_APP_BASE_URL}/ingredients/`, {
-			method: "GET",
-			headers: {
-				"Authorization": `Bearer ${localStorage.getItem("token")}`
-			}
-		})
-			.then((res) => {
-				setIngredients(res.data.ingredients)
+		setInterval(() => {
+			axios(`${process.env.REACT_APP_BASE_URL}/ingredients/`, {
+				method: "GET",
+				headers: {
+					"Authorization": `Bearer ${localStorage.getItem("token")}`
+				}
 			})
-			.catch((err) => {
-				console.log(err)
-			})
+				.then((res) => {
+					setIngredients(res.data.ingredients)
+				})
+				.catch((err) => {
+					console.log(err)
+				})
+		}, 10000);
 	}, []);
 
 	useEffect(() => {
 		if (ingredients) {
 			const data = ingredients.map((obj) => {
+				console.log(obj)
 				return { ...obj, label: obj?.title, value: obj._id }
 			})
-			console.log(data);
 			setIngredientsOptions(data)
 		}
 	}, [ingredients]);

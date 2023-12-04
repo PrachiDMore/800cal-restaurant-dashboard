@@ -7,9 +7,10 @@ const OrderContext = createContext();
 const OrderContextProvider = ({ children }) => {
 
 	const [orders, setOrders] = useState([])
+	const { token } = UseAuthContext()
 
-	useEffect(() => {
-		axios(`${process.env.REACT_APP_BASE_URL}/calendar/restaurant`, {
+	const fetchData = () => {
+		axios(`${process.env.REACT_APP_BASE_URL}/calendar/restaurant/${Date.now()}`, {
 			method: "GET",
 			headers: {
 				"Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -21,7 +22,16 @@ const OrderContextProvider = ({ children }) => {
 			.catch((err) => {
 				console.log(err.message)
 			})
-	}, []);
+	}
+
+	useEffect(() => {
+		if (token) {
+			fetchData()
+			setInterval(fetchData, 10000);
+		}
+	}, [token]);
+
+
 
 
 	return <OrderContext.Provider value={{ orders }}>

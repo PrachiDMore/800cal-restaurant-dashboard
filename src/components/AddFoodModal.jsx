@@ -35,25 +35,49 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
   useEffect(() => {
     if (showModal?.update && showModal.data) {
       setFormState(showModal.data)
+      setFoodIngredients(showModal.data.ingredients)
+      setImage(showModal?.data?.image)
     }
   }, [showModal])
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios(`${process.env.REACT_APP_BASE_URL}/food/create`, {
-      method: "POST",
-      data: { ...formstate, ingredients: foodIngredients, image },
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`
-      }
-    })
-      .then((res) => {
-        console.log(res.data)
+    if (showModal?.update) {
+      axios(`${process.env.REACT_APP_BASE_URL}/food/${showModal?.data?._id}`, {
+        method: "PATCH",
+        data: { ...formstate, ingredients: foodIngredients?.map((data) => {
+          return data?._id
+        }), image },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
       })
-      .catch((err) => {
-        console.log(err)
+        .then((res) => {
+          alert(res.data.message)
+          setShowModal({show: false, update: false, data: undefined})
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    } else {
+      axios(`${process.env.REACT_APP_BASE_URL}/food/create`, {
+        method: "POST",
+        data: { ...formstate, ingredients: foodIngredients?.map((data) => {
+          return data?._id
+        }), image },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
       })
+        .then((res) => {
+          alert(res.data.message)
+          setShowModal({show: false, update: false, data: undefined})
+        })
+        .catch((err) => {
+          alert(err.message)
+        })
+    }
   }
 
   return (
@@ -82,10 +106,10 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
               </div>
               <Input value={formstate.foodcode} id={"foodcode"} onChange={handleChange} label={"Food Code"} type={"text"} placeholder={"Food Code"} />
               <SearchableSelect label={"Ingredients"} onChange={(e) => {
-                setFoodIngredients(e.map((data) => {
-                  return data._id
-                }))
-              }} id={"ingredients"} isMulti={true} placeholder={"Select the Ingredients"} options={ingredientsOptions} />
+                setFoodIngredients(e)
+              }} value={foodIngredients?.map((data) => {
+                return { ...data, label: data?.title, value: data._id }
+              })} id={"ingredients"} isMulti={true} placeholder={"Select the Ingredients"} options={ingredientsOptions} />
               {/* <SearchableSelect label={"Allergic Items"} id={"allergy"} isMulti={true} placeholder={"Select the Allergic Items"} options={ingredientsOptions} /> */}
               <Select value={formstate.protien} onChange={handleChange} id={"category"} label={"Category"} options={[
                 {
@@ -110,7 +134,7 @@ const AddFoodModal = ({ showModal, setShowModal }) => {
               <Input value={formstate.description} id={"description"} onChange={handleChange} label={"Description"} type={"text"} placeholder={"Description"} />
             </div>
             <div className="flex items-center justify-center pb-6  rounded-b ">
-              <Button text={"Add Food"} className={"w-1/6"} />
+              <Button text={showModal?.update ? "Update Food" : "Add Food"} className={"w-1/6"} />
             </div>
           </form>
         </div>

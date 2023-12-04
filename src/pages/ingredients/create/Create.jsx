@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../../components/Layout'
 import Input from '../../../components/Input'
 import Button from '../../../components/Button'
 import UploadComponent from "../../../components/UploadComponent"
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 const CreateIngredients = () => {
   const [image, setImage] = useState("");
+  const { _id } = useParams();
   const initialFormState = {
     title: "",
     location: "",
@@ -27,30 +29,59 @@ const CreateIngredients = () => {
   const handleCreate = (e) => {
     e.preventDefault()
     if (image && formState.location) {
-      axios(`${process.env.REACT_APP_BASE_URL}/ingredients/create`, {
-        method: "POST",
-        data: {
-          ...formState,
-          image
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-      })
-        .then((res) => {
-          console.log(res.data)
+      if (!_id) {
+        axios(`${process.env.REACT_APP_BASE_URL}/ingredients/create`, {
+          method: "POST",
+          data: {
+            ...formState,
+            image
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
         })
+          .then((res) => {
+            alert(res.data.message)
+          })
+      } else {
+        axios(`${process.env.REACT_APP_BASE_URL}/ingredients/${_id}`, {
+          method: "PATCH",
+          data: {
+            ...formState,
+            image
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+        })
+          .then((res) => {
+            alert(res.data.message)
+          })
+      }
     } else {
       alert("Please fill the form")
     }
   }
+
+  useEffect(() => {
+    if (_id) {
+      axios(`${process.env.REACT_APP_BASE_URL}/ingredients/${_id}`, {
+        method: "GET",
+      })
+        .then((res) => {
+          setFormState(res.data.ingredient)
+          setImage(res.data.ingredient.image)
+        })
+    }
+  }, [_id])
+
   return (
     <>
       <Layout>
         <div className='w-4/5  Lexend'>
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
-            Create Ingredient
+            {_id ? "Update Ingredient" : "Create Ingredient"}
           </div>
 
           <div className='w-full p-5 grid gap-4 h-full'>

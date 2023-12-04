@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import Button from '../components/Button'
-import RestoProfile from '../components/RestoProfile'
-import Input from '../components/Input'
+import Layout from '../../components/Layout'
+import Button from '../../components/Button'
+import RestoProfile from '../../components/RestoProfile'
+import Input from '../../components/Input'
 
 const Statement = () => {
   const [showResto, setShowResto] = useState(false)
@@ -25,7 +25,7 @@ const Statement = () => {
                 <p className='text-sm text-textGray'>Your sales, cash in and referral earnings</p>
               </div>
               <div>
-                <p className='text-sm text-textGray'>Available Balance: <span className='text-lg text-white font-medium'>$998750.00</span></p>
+                <p className='text-sm text-textGray'>Available Balance: <span className='text-lg text-white font-medium'>KWD. 998750.00</span></p>
               </div>
               <div>
                 <Button text={"Create a transaction"}/>
@@ -58,14 +58,14 @@ const Statement = () => {
                   <tr className="border-b border-mediumGray">
                     <th className="px-6 py-4 ">Fri, September 29, 2023</th>
                     <td className="px-6 py-4">Payout to 78****78</td>
-                    <td className="px-6 py-4">($10.00)</td>
-                    <td className="px-6 py-4">$998750.00</td>
+                    <td className="px-6 py-4">(KWD. 10.00)</td>
+                    <td className="px-6 py-4">KWD. 998750.00</td>
                   </tr>
                   <tr className="">
                     <th className="px-6 py-4 ">Fri, September 29, 2023</th>
                     <td className="px-6 py-4">Payout to 78****78</td>
-                    <td className="px-6 py-4">($10.00)</td>
-                    <td className="px-6 py-4">$998750.00</td>
+                    <td className="px-6 py-4">(KWD. 10.00)</td>
+                    <td className="px-6 py-4">KWD. 998750.00</td>
                   </tr>
                 </tbody>
               </table>

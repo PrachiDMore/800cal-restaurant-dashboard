@@ -20,41 +20,49 @@ const Navbar = () => {
           <NavItem link={{
             url: "/home",
             title: "Home",
-            icon: <AiFillHome />
           }} />
-          <NavItem link={{
+          <NavItem title={"Ingredients"} order={false} items={[
+            {
+              url: "/ingredients",
+              title: "List Ingredients",
+            },
+            {
+              url: "/ingredients/create",
+              title: "Add Ingredients",
+            },
+          ]} />
+            <NavItem link={{
             url: "/list-foods",
-            title: "Add Food",
-            icon: <MdOutlineAddToPhotos />
+            title: "List Foods",
           }} />
           <NavItem title={"Orders"} icon={<BsBox />} order={true} items={[
             {
               url: "/all-orders",
               title: "All Orders",
-              number: orders.length
+              number: orders?.length
             },
             {
               url: "/new-orders",
               title: "New Orders",
-              number: orders.length
+              number: orders?.length
             },
             {
               url: "/confirmed-orders",
               title: "Confirmed Orders",
-              number: orders.length
+              number: orders?.length
             },
             {
               url: "/complete-orders",
               title: "Complete Orders",
-              number: orders.length
+              number: orders?.length
             },
             {
               url: "/cancel-orders",
               title: "Cancelled Orders",
-              number: orders.length
+              number: orders?.length
             }
           ]} />
-          <NavItem title={"Accounts"} icon={<BiWallet />} order={false} items={[
+          {/* <NavItem title={"Accounts"} icon={<BiWallet />} order={false} items={[
             {
               url: "/statement",
               title: "Statement"
@@ -63,12 +71,26 @@ const Navbar = () => {
               url: "/withdrawals",
               title: "Withdrawals"
             }
-          ]} />
+          ]} /> */}
           <NavItem link={{
+            url: "/withdrawals",
+            title: "Withdrawals"
+          }} />
+          {/* <NavItem title={"Accounts"} icon={<BiWallet />} order={false} items={[
+            {
+              url: "/statement",
+              title: "Statement"
+            },
+            {
+              url: "/withdrawals",
+              title: "Withdrawals"
+            }
+          ]} /> */}
+          {/* <NavItem link={{
             url: "/reviews",
             title: "Reviews",
             icon: <AiFillStar />
-          }} />
+          }} /> */}
           <NavItem link={{
             url: "/programs",
             title: "Programs",

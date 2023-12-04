@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import Layout from '../components/Layout'
-import Button from '../components/Button'
-import RestoProfile from '../components/RestoProfile'
-import Input from '../components/Input'
+import Layout from '../../components/Layout'
+import Button from '../../components/Button'
+import RestoProfile from '../../components/RestoProfile'
+import Input from '../../components/Input'
+import axios from 'axios'
 
 const Withdrawal = () => {
   const [showResto, setShowResto] = useState(false)
@@ -18,17 +19,24 @@ const Withdrawal = () => {
           </div>
 
           <div className='w-full p-5 grid gap-4'>
-            <h1 className='text-xl font-medium'>Payout History</h1>
+            <h1 className='text-xl font-medium'>Wallet</h1>
             <div className='w-full flex gap-5'>
-              <div className='bg-darkGray rounded-md w-1/2 flex items-center justify-between p-5'>
+              <div className='bg-darkGray rounded-md w-full flex items-center justify-between p-5'>
                 <div>
-                  <p className='text-sm text-textGray'>Available Balance: <span className='text-lg text-white font-medium'>$998750.00</span></p>
+                  <p className='text-sm text-textGray'>Available Balance: <span className='text-lg text-white font-medium'>KWD. 998750.00</span></p>
                 </div>
                 <div>
-                  <Button text={"Requset Payout"}/>
+                  <Button onClick={() => {
+                    axios(`${process.env.REACT_APP_BASE_URL}/restaurant-transaction/create`, {
+                      headers: `Bearer ${localStorage.getItem("token")}`,
+                      data: {
+                        
+                      }
+                    })
+                  }} text={"Requset Payout"}/>
                 </div>
               </div>
-              <div className='bg-darkGray rounded-md w-1/2 flex items-center justify-between p-5'>
+              <div className='bg-darkGray rounded-md w-1/2 hidden items-center justify-between p-5'>
                 <div className=''>
                   <h1 className='font-medium text-lg'>Payout account</h1>
                   <p className='text-sm text-textGray'>78****78</p>
@@ -62,7 +70,7 @@ const Withdrawal = () => {
 
                 <tbody className='text-sm'>
                   <tr className="border-b border-mediumGray">
-                    <td className="px-6 py-4">$10.00</td>
+                    <td className="px-6 py-4">KWD. 10.00</td>
                     <td className='px-6 py-4 grid gap-1'>
                       <div className="">Payout to 78****78</div>
                       <div className="text-xs px-2 py-1 w-14 text-center bg-green/50 rounded-md">Paid</div>
@@ -70,7 +78,7 @@ const Withdrawal = () => {
                     <th className="px-6 py-4 ">Fri, September 29, 2023</th>
                   </tr>
                   <tr className="">
-                    <td className="px-6 py-4">$10.00</td>
+                    <td className="px-6 py-4">KWD. 10.00</td>
                     <td className='px-6 py-4 grid gap-1'>
                       <div className="">Payout to 78****78</div>
                       <div className="text-xs px-2 py-1 w-14 text-center bg-red-500/50 rounded-md">Unpaid</div>

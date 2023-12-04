@@ -18,18 +18,20 @@ const MealsContextProvider = ({ children }) => {
 	// }, []);
 
 	useEffect(() => {
-		axios(`${process.env.REACT_APP_BASE_URL}/meal/`, {
-			method: "GET",
-			headers: {
-				"Authorization": `Bearer ${localStorage.getItem("token")}`
-			}
-		})
-			.then((res) => {
-				setMeals(res.data.meal)
+		setInterval(() => {
+			axios(`${process.env.REACT_APP_BASE_URL}/meal/`, {
+				method: "GET",
+				headers: {
+					"Authorization": `Bearer ${localStorage.getItem("token")}`
+				}
 			})
-			.catch((err) => {
-				console.log(err)
-			})
+				.then((res) => {
+					setMeals(res.data.meal)
+				})
+				.catch((err) => {
+					console.log(err)
+				})
+		}, 10000);
 	}, []);
 
 	useEffect(() => {
