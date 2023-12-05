@@ -8,10 +8,12 @@ import Button from '../components/Button';
 import { UseOrderContext } from '../context/Order';
 import moment from 'moment/moment';
 import { Link } from 'react-router-dom';
+import { UseAuthContext } from '../context/Auth';
 
 const Home = () => {
 	const [showResto, setShowResto] = useState(false);
 	const { orders } = UseOrderContext()
+	const { user } = UseAuthContext()
 
 	return (
 		<>
@@ -25,7 +27,7 @@ const Home = () => {
 
 					<div className='w-full p-5 grid grid-cols-1 gap-4'>
 						{/* 1st section */}
-						<div className='w-full grid grid-cols-4 gap-4'>
+						<div className='w-full grid grid-cols-3 gap-8'>
 							<div className='bg-darkGray rounded-xl p-3 py-5'>
 								<div className='w-full flex items-center justify-between text-lg'>
 									<p className='font-light'>Current Orders</p>
@@ -42,7 +44,7 @@ const Home = () => {
 								<p className='text-2xl font-bold'>{orders.length}</p>
 							</div>
 
-							<div className='bg-darkGray rounded-xl p-3 py-5'>
+							<div className='hidden bg-darkGray rounded-xl p-3 py-5'>
 								<div className='w-full flex items-center justify-between text-lg'>
 									<p className='font-light'>Today's Sale</p>
 									<AiOutlineTags className='text-green text-3xl' />
@@ -55,7 +57,7 @@ const Home = () => {
 									<p className='font-light'>Wallet</p>
 									<PiWallet className='text-green text-3xl' />
 								</div>
-								<p className='text-2xl font-bold'>5000KD</p>
+								<p className='text-2xl font-bold'>{ user?.wallet} KWD</p>
 							</div>
 						</div>
 
@@ -75,7 +77,7 @@ const Home = () => {
 						<div className='w-full grid gap-4'>
 							<p className='font-semibold text-xl '>Orders</p>
 
-							<div className='flex gap-4'>
+							<div className='hidden gap-4'>
 								<Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"} />
 								<Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
 							</div>

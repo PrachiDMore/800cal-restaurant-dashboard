@@ -22,7 +22,7 @@ const ListIngredients = () => {
 							<input className='w-full outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
 						</div>
 
-						<div className='flex gap-4'>
+						<div className='hidden gap-4'>
 							{/* <Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"} />
 							<Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} /> */}
 						</div>

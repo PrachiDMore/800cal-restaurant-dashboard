@@ -26,7 +26,7 @@ const Programs = () => {
               {/* <Button text={"Add Food"} onClick={() => {  }} className={"w-1/6"} /> */}
             </div>
 
-            <div className='flex gap-4 '>
+            <div className='hidden gap-4 '>
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Excel"} />
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
             </div>

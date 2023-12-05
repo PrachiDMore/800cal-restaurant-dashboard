@@ -26,7 +26,7 @@ const OrderDetails = () => {
         method: "GET"
       })
         .then((res) => {
-          // axios(`${process.env.REACT_APP_BASE_URL}/meal-application/${res.data?.meals?._id}`, {
+          // axios(`${process.env.REACT_APP_BASE_URL}/meal-application/${res.data?.calendar?.meals?._id}`, {
           //   method: "GET",
           //   headers: `Bearer ${localStorage.getItem("token")}`
           // })

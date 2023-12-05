@@ -7,9 +7,11 @@ import { TbTruckDelivery } from 'react-icons/tb'
 import { BsBox } from 'react-icons/bs'
 import { BiWallet } from 'react-icons/bi'
 import { UseOrderContext } from '../context/Order';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const { orders } = UseOrderContext();
+  const navigate = useNavigate();
   return (
     <>
       <div className='w-1/5 p-5 Lexend border-r border-textGray max-h-screen h-screen overflow-hidden'>
@@ -31,7 +33,7 @@ const Navbar = () => {
               title: "Add Ingredients",
             },
           ]} />
-            <NavItem link={{
+          <NavItem link={{
             url: "/list-foods",
             title: "List Foods",
           }} />
@@ -46,21 +48,21 @@ const Navbar = () => {
               title: "New Orders",
               number: orders?.length
             },
-            {
-              url: "/confirmed-orders",
-              title: "Confirmed Orders",
-              number: orders?.length
-            },
-            {
-              url: "/complete-orders",
-              title: "Complete Orders",
-              number: orders?.length
-            },
-            {
-              url: "/cancel-orders",
-              title: "Cancelled Orders",
-              number: orders?.length
-            }
+            // {
+            //   url: "/confirmed-orders",
+            //   title: "Confirmed Orders",
+            //   number: orders?.length
+            // },
+            // {
+            //   url: "/complete-orders",
+            //   title: "Complete Orders",
+            //   number: orders?.length
+            // },
+            // {
+            //   url: "/cancel-orders",
+            //   title: "Cancelled Orders",
+            //   number: orders?.length
+            // }
           ]} />
           {/* <NavItem title={"Accounts"} icon={<BiWallet />} order={false} items={[
             {
@@ -111,6 +113,12 @@ const Navbar = () => {
             title: "Settings",
             icon: <IoMdSettings />
           }} />
+          <span onClick={() => {
+            localStorage.setItem("token", "");
+            navigate("/")
+          }}>
+            <NavItem title={"Logout"} />
+          </span>
         </div>
       </div>
     </>

@@ -7,10 +7,12 @@ import { useParams } from 'react-router-dom';
 import UploadComponent from '../components/UploadComponent';
 import RestoProfile from '../components/RestoProfile';
 import Select from '../components/Select';
+import { UseAuthContext } from '../context/Auth';
 
 const RiderForm = () => {
 	const [showResto, setShowResto] = useState(false)
 	const { _id } = useParams();
+	const { user } = UseAuthContext()
 	const [image, setImage] = useState("");
 	const initialState = {
 		"firstname": "",
@@ -55,7 +57,7 @@ const RiderForm = () => {
 			if (_id) {
 				axios(`${process.env.REACT_APP_BASE_URL}/rider/admin/update/${_id}`, {
 					method: "PATCH",
-					data: { ...formState, image: image },
+					data: { ...formState, image: image, restaurant: user?._id },
 				})
 					.then((res) => {
 						alert(res.data.message)
@@ -66,7 +68,7 @@ const RiderForm = () => {
 			} else {
 				axios(`${process.env.REACT_APP_BASE_URL}/rider/signup`, {
 					method: "POST",
-					data: { ...formState, image: image },
+					data: { ...formState, image: image, restaurant: user?._id },
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("token")}`
 					}

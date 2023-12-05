@@ -28,7 +28,6 @@ const IngredientsContextProvider = ({ children }) => {
 	useEffect(() => {
 		if (ingredients) {
 			const data = ingredients.map((obj) => {
-				console.log(obj)
 				return { ...obj, label: obj?.title, value: obj._id }
 			})
 			setIngredientsOptions(data)

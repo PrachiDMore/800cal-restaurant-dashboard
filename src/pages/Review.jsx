@@ -23,7 +23,7 @@ const Review = () => {
               <input className='w-full outline-none bg-darkGray rounded-lg px-4 py-2' type="text" placeholder='Search...' />
             </div>
 
-            <div className='flex w-full gap-3'>
+            <div className='hidden w-full gap-3'>
               <Button text={"Excel"} />
               <Button text={"Print"} />
             </div>
