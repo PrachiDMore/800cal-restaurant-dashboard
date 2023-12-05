@@ -80,9 +80,9 @@ const Withdrawal = () => {
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
             </div>
 
-            <div className="w-full text-white  overflow-hidden rounded-lg">
+            <div className="w-full text-white  max-h-[65vh] overflow-y-scroll rounded-lg">
               <table className="w-full text-left bg-darkGray ">
-                <thead className='overflow-hidden '>
+                <thead className='overflow-hidden sticky top-0'>
                   <tr className='bg-mediumGray rounded-t-lg'>
                     <th className="px-6 py-3">Amount</th>
                     <th className="px-6 py-3">Description</th>

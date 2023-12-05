@@ -13,10 +13,10 @@
   background: #4fe38a;
   background: linear-gradient(90deg, rgba(79, 227, 138, 1) 0%, rgba(28, 195, 122, 1) 100%);
 }
-
+/* 
 ::-webkit-scrollbar {
   width: 0;
-}
+} */
 
 .css-1dimb5e-singleValue {
   color: white !important;
