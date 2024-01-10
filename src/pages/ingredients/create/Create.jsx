@@ -85,7 +85,7 @@ const CreateIngredients = () => {
           </div>
 
           <div className='w-full p-5 grid gap-4 h-full'>
-            <div className="w-full text-white rounded-lg max-h-[83vh] overflow-scroll">
+            <div className="w-full text-white rounded-lg max-h-[90vh] overflow-y-scroll">
               <form onSubmit={handleCreate} className='p-10 flex flex-col gap-y-3'>
                 <UploadComponent setImage={setImage} image={image} />
                 <Input placeholder={"Enter the Ingredient name"} label={"Name"} id={"title"} type={"text"} value={formState.title} onChange={handleChange} />

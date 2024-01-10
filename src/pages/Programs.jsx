@@ -17,7 +17,6 @@ const Programs = () => {
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
             Programs
-            <img onClick={() => {  }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" />
           </div>
 
           <div className='w-full p-5 grid gap-4'>

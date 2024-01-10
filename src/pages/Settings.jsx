@@ -5,9 +5,13 @@ import Input from '../components/Input'
 import { UseAuthContext } from '../context/Auth'
 import Button from '../components/Button'
 import axios from 'axios'
+import UploadInput from '../components/UploadInput'
 
 const Settings = () => {
   const [showResto, setShowResto] = useState(false)
+  const [license, setLicense] = useState("")
+  const [logo, setLogo] = useState("")
+  const [agreement, setAgreement] = useState("")
   const initialFormState = {
     ownername: "",
     ownernumber: "",
@@ -31,8 +35,10 @@ const Settings = () => {
       }
     })
       .then((res) => {
-        console.log(res.data)
         setFormState(res.data.restaurant)
+        setLogo(res.data.restaurant?.logo)
+        setLicense(res.data.restaurant?.license)
+        setAgreement(res.data.restaurant?.agreement)
       })
       .catch((err) => {
         console.log(err)
@@ -54,10 +60,22 @@ const Settings = () => {
           {/* topbar */}
           <div className='w-full p-4 flex items-center justify-between border-b border-textGray text-2xl font-semibold'>
             Settings
-            <img onClick={() => { setShowResto(true) }} className='border-green border-2 rounded-3xl p-1 h-12 w-12' src="/assets/resto.png" alt="" />
           </div>
 
-          <div className='w-full p-5 grid gap-5'>
+          <div className='w-full p-5 grid gap-5 h-[90vh] overflow-auto'>
+            <div className='grid gap-1'>
+              <h1 className='text-lg font-semibold'>Restaurant Details</h1>
+              <div className='grid grid-cols-3 gap-4'>
+                <Input onChange={handleChange} id={"title"} value={formState?.title} type={"text"} label={"Restaurant Title"} placeholder={"Enter restaurant title"} />
+                <Input onChange={handleChange} id={"companyname"} value={formState?.companyname} type={"text"} label={"Restaurant Company Name"} placeholder={"Enter company name"} />
+                <Input onChange={handleChange} id={"email"} value={formState?.email} type={"text"} label={"Restaurant Email"} placeholder={"Enter restaurant email"} />
+              </div>
+              <div className='mt-3 grid grid-cols-3 gap-4'>
+                <UploadInput onChange={setLogo} value={logo} label={"Restaurant logo"}/>
+                <UploadInput onChange={setLicense} value={license} label={"Restaurant license"}/>
+                <UploadInput disabled={true} onChange={setAgreement} value={agreement} label={"Restaurant agreement"}/>
+              </div>
+            </div>
             <div className='grid gap-1'>
               <h1 className='text-lg font-semibold'>Owner Details</h1>
               <div className='grid grid-cols-3 gap-4'>
@@ -86,13 +104,13 @@ const Settings = () => {
             <Button text={"Submit"} onClick={() => {
               axios(`${process.env.REACT_APP_BASE_URL}/restaurant/update`, {
                 method: "PATCH",
-                data: formState,
+                data: {...formState, logo, license},
                 headers: {
                   Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
               })
                 .then((res) => {
-                  console.log(res.data)
+                  alert("Updated")
                 })
                 .catch((err) => {
                   alert(err.message);

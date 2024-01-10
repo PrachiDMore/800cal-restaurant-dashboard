@@ -28,7 +28,7 @@ const AllOrders = () => {
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
             </div>
 
-            <div className="w-full text-white overflow-scroll rounded-lg max-h-[71vh]">
+            <div className="w-full text-white overflow-y-auto rounded-lg max-h-[80vh]">
               <table className="w-full text-left bg-darkGray h-full max-h-full">
                 <thead className='sticky top-0'>
                   <tr key={"table-head"} className='bg-mediumGray rounded-t-lg'>

@@ -11,13 +11,14 @@ import axios from 'axios'
 import moment from 'moment'
 import { UseRiderContext } from '../../context/Rider'
 import Select from '../../components/Select'
+import OrderStickerModal from "../../components/OrderStickerModal"
 
 const OrderDetails = () => {
   const { _id } = useParams();
   const { rider } = UseRiderContext()
   const [data, setData] = useState();
   const [value, setValue] = useState("");
-
+  const [modal, setModal] = useState({ show: false, data: undefined })
   const testRef = useRef()
 
   useEffect(() => {
@@ -194,13 +195,14 @@ const OrderDetails = () => {
               </div>
 
               <div className='w-full flex gap-5'>
-                <Button buttonClassName={"w-auto px-3 py-1"} text={"Print sticker"} />
+                <Button onClick={() => setModal({show: true, data: data})} buttonClassName={"w-auto px-3 py-1"} text={"Print sticker"} />
                 <Button onClick={() => window.print()} buttonClassName={"w-auto px-3 py-1 bg-accent border border-green"} text={"Download invoive"} />
               </div>
             </div>
           </div>
         </div>
       </Layout>
+      <OrderStickerModal setModal={setModal} modal={modal}/>
       {/* <RestoProfile showResto={showResto} setShowResto={setShowResto} /> */}
     </>
   )
