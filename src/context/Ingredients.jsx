@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { UseAuthContext } from "./Auth";
 
 const IngredientsContext = createContext();
 
@@ -7,23 +8,25 @@ const IngredientsContextProvider = ({ children }) => {
 
 	const [ingredients, setIngredients] = useState([])
 	const [ingredientsOptions, setIngredientsOptions] = useState([])
+	const { user } = UseAuthContext()
 
 	useEffect(() => {
-		setInterval(() => {
-			axios(`${process.env.REACT_APP_BASE_URL}/ingredients/`, {
-				method: "GET",
-				headers: {
-					"Authorization": `Bearer ${localStorage.getItem("token")}`
-				}
-			})
-				.then((res) => {
-					setIngredients(res.data.ingredients)
+		if (user) {
+			setInterval(() => {
+				axios(`${process.env.REACT_APP_BASE_URL}/ingredients/`, {
+					method: "GET",
 				})
-				.catch((err) => {
-					console.log(err)
-				})
-		}, 10000);
-	}, []);
+					.then((res) => {
+						setIngredients(res.data.ingredients?.filter((data) => {
+							return data?.restaurant?._id === user?._id || data?.restaurant == undefined || data?.restaurant == null
+						}))
+					})
+					.catch((err) => {
+						console.log(err)
+					})
+			}, 10000);
+		}
+	}, [user]);
 
 	useEffect(() => {
 		if (ingredients) {

@@ -28,7 +28,7 @@ const CreateIngredients = () => {
   }
   const handleCreate = (e) => {
     e.preventDefault()
-    if (image && formState.location) {
+    if (image && formState.location && formState?.restaurant?._id != "" && formState?.restaurant?._id != null) {
       if (!_id) {
         axios(`${process.env.REACT_APP_BASE_URL}/ingredients/create`, {
           method: "POST",
@@ -94,7 +94,7 @@ const CreateIngredients = () => {
                 <Input placeholder={"Enter the Ingredient fat"} label={"Fat"} id={"fat"} type={"number"} value={formState.fat} onChange={handleChange} />
                 <Input placeholder={"Enter the Ingredient carbs"} label={"Carbs"} id={"carbs"} type={"number"} value={formState.carbs} onChange={handleChange} />
                 <Input placeholder={"Enter the Ingredient calories"} label={"Calories"} id={"calories"} type={"number"} value={formState.calories} onChange={handleChange} />
-                <Button type={"submit"} text={"Submit"} />
+                { formState?.restaurant?._id != "" && formState?.restaurant?._id != null && <Button type={"submit"} text={"Submit"} />}
               </form>
             </div>
           </div>

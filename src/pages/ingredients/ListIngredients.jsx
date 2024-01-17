@@ -27,7 +27,7 @@ const ListIngredients = () => {
 							<Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} /> */}
 						</div>
 
-						<div className="w-full text-white overflow-y-scroll rounded-lg max-h-[78vh]">
+						<div className="w-full text-white overflow-y-scroll rounded-lg max-h-[80vh]">
 							<table className="w-full text-left bg-darkGray h-full max-h-full">
 								<thead className='sticky top-0'>
 									<tr key={"table-head"} className='bg-mediumGray rounded-t-lg'>
@@ -42,6 +42,9 @@ const ListIngredients = () => {
 										</th>
 										<th className="px-6 py-3">
 											Location
+										</th>
+										<th className="px-6 py-3">
+											Creator
 										</th>
 									</tr>
 								</thead>
@@ -61,6 +64,9 @@ const ListIngredients = () => {
 												</td>
 												<td className="px-6 py-4">
 													{ingredient?.location}
+												</td>
+												<td className="px-6 py-4">
+													{ingredient?.restaurant == null ? "Admin" : ingredient?.restaurant?.title }
 												</td>
 											</tr>
 										})
