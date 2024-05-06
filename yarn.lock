@@ -1896,18 +1896,6 @@
   resolved "https://registry.yarnpkg.com/@csstools/selector-specificity/-/selector-specificity-2.2.0.tgz#2cbcf822bf3764c9658c4d2e568bd0c0cb748016"
   integrity sha512-+OJ9konv95ClSTOJCmMZqpd5+YGsB2S+x6w3E1oaM8UuR5j8nTNHYSz8c9BEPGDOCMQYIEEGlVPj/VY64iTbGw==
 
-"@edge-store/react@^0.0.0-alpha.8":
-  version "0.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/@edge-store/react/-/react-0.0.0-alpha.8.tgz#e92512855d86fbb4db1835f25336eadbe9c9ad91"
-  integrity sha512-TDHMtfv/8C/fz7Wf7ttHb7DFNdJamS0Q/4So6lsyc0F1DZ2/1aFx2hsyN2m6h7zl/42AO5sg7rCZJro4jXAFjA==
-  dependencies:
-    "@aws-sdk/client-s3" "^3.294.0"
-    "@aws-sdk/s3-request-presigner" "^3.294.0"
-    "@panva/hkdf" "^1.0.4"
-    cookie "^0.5.0"
-    jose "^4.13.1"
-    uuid "^9.0.0"
-
 "@edgestore/react@^0.1.6":
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/@edgestore/react/-/react-0.1.6.tgz#ddc8b5e04ebc37ecb0c79a2ec46a5f4320dc0a13"

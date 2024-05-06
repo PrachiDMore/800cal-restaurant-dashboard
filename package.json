@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@edge-store/react": "^0.0.0-alpha.8",
     "@edgestore/react": "^0.1.6",
     "@edgestore/server": "^0.1.6",
     "@testing-library/jest-dom": "^5.14.1",
