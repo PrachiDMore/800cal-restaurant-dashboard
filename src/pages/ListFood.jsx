@@ -32,7 +32,7 @@ const ListFood = () => {
               <Button buttonClassName={"w-auto px-3 py-1"} text={"Print"} />
             </div>
 
-            <div className="w-full text-white h-[88vh] overflow-auto rounded-lg">
+            <div className="w-full text-white h-[78vh] overflow-auto rounded-lg pb-5">
               <table className="w-full text-left bg-darkGray ">
                 <thead className='sticky top-0 overflow-hidden '>
                   <tr className='bg-mediumGray rounded-t-lg'>
@@ -44,7 +44,7 @@ const ListFood = () => {
                   </tr>
                 </thead>
 
-                <tbody className='text-sm'>
+                <tbody className='text-sm '>
                   {
                     food?.map((data, index) => {
                       return <tr key={index} className="border-b border-mediumGray">
